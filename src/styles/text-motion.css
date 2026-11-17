@@ -1,0 +1,47 @@
+/* Split text (src/animations/text.js) and number counters (src/animations/counters.js) */
+
+.split-char,
+.split-line {
+  will-change: transform, opacity;
+}
+
+/* Counter: digits in one-line masks, signs in between */
+.counter {
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+/* Window one line tall, as wide as the widest digit (--counter-digit-width, set in counters.js).
+   Until the font is in and the width is measured, a fallback of 0.62em keeps the layout */
+.counter__digit {
+  position: relative;
+  display: inline-block;
+  width: var(--counter-digit-width, 0.62em);
+  height: 1lh;
+  /* Clips only above and below: glyph overhangs at the sides stay whole */
+  clip-path: inset(0 -0.1em);
+}
+
+/* Measures digit widths in the counter's font (counters.js) */
+.counter__probe {
+  position: absolute;
+  visibility: hidden;
+  white-space: pre;
+}
+
+.counter__strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  will-change: transform;
+}
+
+/* Digits sit at the right edge of the column */
+.counter__strip > span {
+  display: flex;
+  justify-content: flex-end;
+  height: 1lh;
+}

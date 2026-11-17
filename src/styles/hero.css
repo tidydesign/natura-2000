@@ -1,4 +1,8 @@
-/* Hero: title, photo caption, full-width photo with two glass fact cards */
+/*
+  Hero: title, photo caption, full-width photo with two glass fact cards.
+  The photo is one screen tall (minus the header). The image keeps its own proportions and may be
+  taller than the frame: that spare height is the parallax room (src/animations/hero.js)
+*/
 
 .hero {
   text-align: center;
@@ -35,39 +39,41 @@
   background-color: var(--color-media);
 }
 
+/* Natural height, at least the frame's; when the frame is taller than the photo's proportion,
+   the sides are cropped instead (on mobile the design shows the left part) */
 .hero__image {
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   object-fit: cover;
-  /* On mobile the design shows the left part of the photo */
-  object-position: 0% 100%;
+  object-position: 0% 0%;
 }
 
+/* Centred without a transform: transforms here belong to the scroll animation */
 .hero__facts {
   position: absolute;
   top: var(--hero-facts-top);
-  left: 50%;
+  right: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-16);
   width: var(--hero-fact-size);
-  transform: translateX(-50%);
+  margin-inline: auto;
 }
 
 @media (min-width: 480px) {
-  .hero__media {
-    height: auto;
-    aspect-ratio: 16 / 9;
-  }
-
   .hero__image {
-    object-position: 50% 50%;
+    object-position: 50% 0%;
   }
 
   .hero__facts {
     flex-direction: row;
     gap: var(--space-32);
-    width: auto;
+    width: fit-content;
   }
 
   .hero__facts .fact-card {

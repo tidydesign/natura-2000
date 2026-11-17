@@ -143,7 +143,8 @@
   --hero-intro-offset: var(--space-72);
   --hero-caption-gap: var(--space-72);
   --hero-media-gap: var(--space-16);
-  --hero-media-height: 720px;
+  /* Photo fills the screen below the fixed header (svh: steady while mobile browser bars move) */
+  --hero-media-height: calc(100svh - var(--header-height));
   --hero-facts-top: 160px;
   --hero-fact-size: 192px;
 
@@ -153,8 +154,15 @@
   --about-intro-width: 320px;
   --about-figure-width: 854px;
   --about-step-width: 437px;
-  --about-step-low: 320px;
-  --about-step-high: 144px;
+  /* Steps 01–03 sit lower than the photo's top by a share of its height (320 and 144 of 640) */
+  --about-step-low: 0.5;
+  --about-step-high: 0.225;
+  /* Photo frame height / width */
+  --about-figure-ratio: calc(640 / 854);
+  /* Free space above and below the track in the pinned panel */
+  --about-panel-padding: var(--space-48);
+  /* The design leaves 58px above the track and 48px below: centre, then shift down by half the difference */
+  --about-panel-shift: 10px;
   --about-step-title-height: 88px;
   --about-button-width: 192px;
 

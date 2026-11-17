@@ -11,6 +11,8 @@
 - src/main.js — подключение стилей и инициализация
 - src/styles/ — tokens.css (переменные), base.css, секции отдельными файлами
 - src/animations/ — config.js (все тайминги и easing), smooth-scroll.js (Lenis + ScrollTrigger), анимации секций
+  - text.js — появление текста: H1/H2 побуквенно, остальной текст построчно (SplitText); списки селекторов в начале файла. Новый текст добавлять туда
+  - counters.js — счётчики цифр под маской (.fact-card__value, .stat__value); знаки остаются на месте
 - src/components/ — интерактив компонентов (hover и т. п.)
 - src/assets/ — шрифты, логотипы и иконки (svg из Figma); public/ — файлы как есть
 - src/images/<страница>/ — фото, которые готовит пользователь, каждое в двух размерах: name.jpg и name@2x.jpg (подключать через srcset 1x/2x)

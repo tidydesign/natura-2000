@@ -82,7 +82,18 @@
 }
 
 @media (min-width: 480px) {
+  /*
+    Photo width: the design's 854px, but never wider than 60% of the screen, and never taller
+    than the pinned panel (screen minus header and padding) allows
+  */
   .about {
+    --about-figure-w: min(
+      var(--about-figure-width),
+      60vw,
+      calc((100svh - var(--header-height) - 2 * var(--about-panel-padding)) / var(--about-figure-ratio))
+    );
+    --about-figure-h: calc(var(--about-figure-w) * var(--about-figure-ratio));
+
     padding: var(--about-padding-block) 0;
   }
 
@@ -99,6 +110,42 @@
     display: none;
   }
 
+  /*
+    Horizontal scroll (src/animations/about.js adds the class): the section becomes a panel one
+    screen tall under the header, pinned while the page scroll moves the track to the left
+  */
+  .about--horizontal {
+    display: flex;
+    align-items: center;
+    height: calc(100svh - var(--header-height));
+    padding: var(--about-panel-shift) 0 0;
+    overflow: hidden;
+  }
+
+  .about--horizontal .about__track {
+    flex: none;
+    width: max-content;
+    overflow: visible;
+    will-change: transform;
+  }
+
+  /* The photo keeps its own proportions at the frame's height, so it is wider than the frame:
+     the spare width is the room it moves in under the frame's mask (about.js) */
+  .about--horizontal .about__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    max-width: none;
+    height: 100%;
+    will-change: transform;
+  }
+
+  .about--horizontal .about__intro,
+  .about--horizontal .about__step {
+    will-change: transform;
+  }
+
   .about__intro {
     flex: none;
     width: var(--about-intro-width);
@@ -107,7 +154,7 @@
   .about__figure,
   .about__last {
     flex: none;
-    width: min(var(--about-figure-width), 60vw);
+    width: var(--about-figure-w);
   }
 
   .about__step {
@@ -115,13 +162,13 @@
     width: var(--about-step-width);
   }
 
-  /* Vertical offsets of the steps against the 640px photo, from the design */
+  /* Vertical offsets of the steps against the photo, from the design */
   .about__step--low {
-    margin-top: var(--about-step-low);
+    margin-top: calc(var(--about-figure-h) * var(--about-step-low));
   }
 
   .about__step--high {
-    margin-top: var(--about-step-high);
+    margin-top: calc(var(--about-figure-h) * var(--about-step-high));
   }
 
   .about__last {

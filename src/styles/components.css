@@ -38,6 +38,13 @@
 .button--light {
   color: var(--color-brand);
   background-color: var(--color-surface);
+  transition: background-color var(--button-duration) var(--ease-default);
+}
+
+@media (hover: hover) {
+  .button--light:hover {
+    background-color: var(--color-accent);
+  }
 }
 
 /* Link with a 16px icon in front */
