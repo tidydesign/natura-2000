@@ -1,0 +1,285 @@
+/* Shared pieces used by several sections */
+
+/* Small caps label above a block */
+.eyebrow {
+  font-family: var(--font-family-text);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--tracking-text);
+  text-transform: uppercase;
+}
+
+.eyebrow--brand {
+  color: var(--color-brand);
+}
+
+/* Button: 48px tall, small caps label */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--control-height);
+  padding: var(--space-4) var(--space-32);
+  border-radius: var(--radius-s);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--tracking-text);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.button--primary {
+  color: var(--color-on-brand);
+  background-color: var(--color-brand);
+}
+
+.button--light {
+  color: var(--color-brand);
+  background-color: var(--color-surface);
+}
+
+/* Link with a 16px icon in front */
+.link-icon {
+  display: inline-flex;
+  gap: var(--space-8);
+  align-items: center;
+  padding-block: var(--space-6);
+  color: var(--color-accent);
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-label);
+  letter-spacing: var(--tracking-text);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.link-icon img {
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.link-icon--brand {
+  color: var(--color-brand);
+}
+
+/* Section head: eyebrow on the left, title and lead in the two right columns */
+.section-head {
+  display: grid;
+  box-shadow: inset 0 1px 0 var(--color-line);
+}
+
+.section-head__eyebrow {
+  padding-block: var(--space-16);
+}
+
+.section-head__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding-block: var(--space-16);
+}
+
+.section-head__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--tracking-display);
+}
+
+.section-head__lead {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--tracking-text);
+}
+
+.section-head--dark {
+  color: var(--color-dark-text);
+  box-shadow: inset 0 1px 0 var(--color-dark-line);
+}
+
+@media (min-width: 480px) {
+  .section-head {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+    align-items: start;
+  }
+
+  .section-head__eyebrow {
+    padding-block: var(--space-24);
+  }
+
+  .section-head__body {
+    grid-column: span 2;
+  }
+}
+
+/* White card: image on top, text below (regions and news) */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-8);
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-l);
+}
+
+.card__media {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background-color: var(--color-brand);
+  border-radius: var(--radius-m);
+}
+
+.card__media--wide {
+  aspect-ratio: 16 / 9;
+}
+
+.card__media--landscape {
+  aspect-ratio: 4 / 3;
+}
+
+.card__media--square {
+  aspect-ratio: 1;
+}
+
+.card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+  padding: var(--space-8);
+}
+
+.card__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.card__title,
+.card__stat {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-h4);
+  letter-spacing: var(--tracking-display);
+}
+
+.card__stat-sub {
+  display: block;
+  color: var(--color-muted);
+}
+
+/* The whole card is clickable through the title link */
+.card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.card:has(.card__link) {
+  position: relative;
+}
+
+.card__text {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--tracking-text);
+}
+
+.card__date {
+  color: var(--color-muted);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--tracking-text);
+}
+
+.card__track {
+  display: block;
+  height: var(--track-height);
+  background-color: var(--color-track);
+  border-radius: var(--radius-m);
+}
+
+/* Glass card with a big number (hero) */
+.fact-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  padding: var(--space-16);
+  text-align: center;
+  background-color: var(--color-surface-glass);
+  border-radius: var(--radius-l);
+  backdrop-filter: blur(var(--blur-glass));
+  -webkit-backdrop-filter: blur(var(--blur-glass));
+}
+
+.fact-card__value {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  color: var(--color-brand);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--tracking-display);
+}
+
+.fact-card__text {
+  color: var(--color-muted);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--tracking-text);
+}
+
+/* Inline list split by small dots */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-8);
+  align-items: center;
+  color: var(--color-dark-muted);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  letter-spacing: var(--tracking-text);
+}
+
+.tags li {
+  display: flex;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+.tags li + li::before {
+  content: "";
+  width: var(--dot-size);
+  height: var(--dot-size);
+  background-color: currentColor;
+  border-radius: 50%;
+}
+
+/* Horizontal row that scrolls without a visible scrollbar */
+.scroll-row {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.scroll-row::-webkit-scrollbar {
+  display: none;
+}

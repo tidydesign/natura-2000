@@ -1,0 +1,159 @@
+/*
+  Dark section: "Drei Wege ins Netz" (three stats with links) and
+  "Was gibt es zu entdecken?" (habitat cards in a sideways-scrolling row).
+*/
+
+.discover {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+  padding: var(--section-padding) var(--page-gutter);
+  color: var(--color-dark-text);
+  background-color: var(--color-dark-bg);
+}
+
+/* Stats */
+.discover__stats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+}
+
+.stat__value {
+  padding-block: var(--space-8);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--tracking-display);
+  box-shadow: inset 0 -1px 0 var(--color-dark-line);
+}
+
+.stat__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  justify-content: space-between;
+  align-items: flex-start;
+  min-height: var(--stat-body-height);
+  padding-block: var(--space-16);
+}
+
+.stat__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.stat__title,
+.habitat__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  letter-spacing: var(--tracking-display);
+}
+
+.stat__text {
+  color: var(--color-dark-muted);
+}
+
+/* Habitats */
+.discover__habitats {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+}
+
+.discover__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--tracking-display);
+}
+
+/* The row runs to the screen edge */
+.discover__slider {
+  display: flex;
+  gap: var(--space-16);
+  margin-inline: calc(-1 * var(--page-gutter));
+  padding-inline: var(--page-gutter);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: var(--page-gutter);
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.discover__slider::-webkit-scrollbar {
+  display: none;
+}
+
+.habitat {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: var(--space-8);
+  width: var(--habitat-width);
+  scroll-snap-align: start;
+}
+
+.habitat__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.habitat__media {
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: var(--color-dark-text);
+  border-radius: var(--radius-l);
+}
+
+.habitat__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 480px) {
+  .discover {
+    gap: 0;
+    padding-bottom: var(--space-128);
+  }
+
+  .discover__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--grid-gap);
+    margin-top: var(--space-128);
+  }
+
+  /* One unbroken line under the numbers, across the column gaps */
+  .stat:not(:last-child) .stat__value {
+    margin-right: calc(-1 * var(--grid-gap));
+    padding-right: var(--grid-gap);
+  }
+
+  .discover__habitats {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: var(--grid-gap);
+    margin-top: var(--discover-habitats-gap);
+  }
+
+  /* Centred against the photo, not the whole card */
+  .discover__title {
+    align-self: start;
+    display: flex;
+    align-items: center;
+    height: var(--habitat-media-height);
+  }
+
+  .discover__slider {
+    gap: var(--grid-gap);
+    margin-left: 0;
+    padding-left: 0;
+    scroll-padding-inline: 0;
+  }
+}

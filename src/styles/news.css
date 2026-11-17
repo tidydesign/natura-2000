@@ -1,0 +1,104 @@
+/* "Neues aus dem Netz": three news cards, then the newsletter form */
+
+.news {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-64) var(--page-gutter);
+}
+
+.news__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  margin-top: var(--space-64);
+}
+
+/* Newsletter */
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+  align-items: center;
+  margin-top: var(--space-128);
+  text-align: center;
+}
+
+.newsletter__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+}
+
+.newsletter__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--tracking-display);
+}
+
+.newsletter__form {
+  display: flex;
+  gap: var(--space-4);
+  width: 100%;
+  padding: var(--space-4);
+  background-color: var(--color-field);
+  border-radius: var(--radius-m);
+}
+
+.newsletter__input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-8) var(--space-16);
+  font-weight: var(--font-weight-medium);
+  background: none;
+  border: 0;
+}
+
+.newsletter__input::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
+}
+
+.newsletter__input:focus-visible {
+  outline-offset: -2px;
+}
+
+.newsletter__submit {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--newsletter-button-width);
+  height: var(--control-height);
+  background-color: var(--color-brand);
+  border-radius: var(--radius-s);
+}
+
+.newsletter__submit img {
+  width: var(--icon-size-m);
+  height: var(--icon-size-m);
+}
+
+@media (min-width: 480px) {
+  .news {
+    padding: var(--space-96) var(--page-gutter) var(--news-padding-bottom);
+  }
+
+  .news__list {
+    display: grid;
+    grid-template-columns: minmax(0, 672fr) minmax(0, 319fr) minmax(0, 319fr);
+    gap: var(--grid-gap);
+    align-items: start;
+    margin-top: var(--space-96);
+  }
+
+  .newsletter {
+    width: 100%;
+    max-width: var(--newsletter-width);
+    margin: var(--news-newsletter-gap) auto 0;
+  }
+
+  .newsletter__form {
+    width: var(--newsletter-form-width);
+  }
+}

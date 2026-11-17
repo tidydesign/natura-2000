@@ -1,0 +1,137 @@
+/*
+  "Was ist Natura 2000?"
+  Mobile: a list (intro, photo, 01, photo, 02, photo, 03, photo, button).
+  Desktop: one horizontal track (frame "Desktop - Concept 01 - Screen 02"). For now it
+  scrolls sideways natively; the scroll animation will pin it and drive it by page scroll.
+  The photos are wider than their frames on purpose: room for a parallax shift.
+*/
+
+.about {
+  padding: var(--section-padding) var(--page-gutter);
+}
+
+.about__track {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+}
+
+.about__eyebrow {
+  padding-block: var(--space-16);
+  box-shadow: inset 0 -1px 0 var(--color-line);
+}
+
+.about__intro-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding-block: var(--space-16);
+}
+
+.about__heading,
+.about__step-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  letter-spacing: var(--tracking-display);
+}
+
+.about__figure {
+  position: relative;
+  aspect-ratio: 854 / 640;
+  overflow: hidden;
+  background-color: var(--color-brand);
+  border-radius: var(--radius-l);
+}
+
+.about__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about__number {
+  padding-block: var(--space-8);
+  color: var(--color-brand);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-display);
+  letter-spacing: var(--tracking-display);
+  box-shadow: inset 0 -1px 0 var(--color-line);
+}
+
+.about__step-title {
+  min-height: var(--about-step-title-height);
+  padding-block: var(--space-16);
+}
+
+.about__last {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+  align-items: center;
+}
+
+.about__last .about__figure {
+  width: 100%;
+}
+
+.about__more {
+  width: var(--about-button-width);
+}
+
+@media (min-width: 480px) {
+  .about {
+    padding: var(--about-padding-block) 0;
+  }
+
+  .about__track {
+    flex-direction: row;
+    gap: var(--about-track-gap);
+    align-items: flex-start;
+    padding-inline: var(--page-gutter);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .about__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .about__intro {
+    flex: none;
+    width: var(--about-intro-width);
+  }
+
+  .about__figure,
+  .about__last {
+    flex: none;
+    width: min(var(--about-figure-width), 60vw);
+  }
+
+  .about__step {
+    flex: none;
+    width: var(--about-step-width);
+  }
+
+  /* Vertical offsets of the steps against the 640px photo, from the design */
+  .about__step--low {
+    margin-top: var(--about-step-low);
+  }
+
+  .about__step--high {
+    margin-top: var(--about-step-high);
+  }
+
+  .about__last {
+    position: relative;
+  }
+
+  .about__more {
+    position: absolute;
+    bottom: var(--space-16);
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

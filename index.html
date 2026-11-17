@@ -1,18 +1,682 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Natura 2000</title>
+    <title>Natura 2000 in Rheinland-Pfalz</title>
+    <meta
+      name="description"
+      content="Wo erfährst du alles über Natura 2000? Arten, Lebensräume und Schutzgebiete in Rheinland-Pfalz."
+    />
     <script>
       document.documentElement.classList.add('js')
     </script>
   </head>
   <body>
-    <main class="page">
-      <h1>Natura 2000</h1>
+    <!-- Header -->
+    <header class="header">
+      <a class="header__logo" href="/" aria-label="Natura 2000 — Startseite">
+        <img src="/src/assets/logo/logo-header.svg" alt="" width="127" height="88" />
+      </a>
+      <p class="header__tagline">
+        Wo erfährst du alles über Natura 2000?
+        <span class="header__tagline-accent">Natürlich hier!</span>
+      </p>
+      <nav class="header__nav" aria-label="Hauptnavigation">
+        <ul class="header__list">
+          <li><a class="header__link" href="#">Natura 2000</a></li>
+          <li><a class="header__link" href="#">Arten</a></li>
+          <li><a class="header__link" href="#">Lebensräume</a></li>
+          <li><a class="header__link" href="#">Schutzgebiete</a></li>
+          <li><a class="header__link header__link--accent" href="#">Karte</a></li>
+        </ul>
+      </nav>
+      <button class="header__burger" type="button" aria-label="Menü öffnen" aria-expanded="false">
+        <img src="/src/assets/icons/burger.svg" alt="" width="24" height="24" />
+      </button>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__intro">
+          <h1 class="hero__title" id="hero-title">Kennst du diesen Ort?</h1>
+          <p class="hero__lead">Vermutlich warst du schon mal in Natura 2000, ohne es zu wissen.</p>
+        </div>
+        <p class="hero__caption">Sonntagsspaziergang an der Mosel</p>
+        <div class="hero__media">
+          <img
+            class="hero__image"
+            src="/src/images/home-page/hero.jpg"
+            srcset="/src/images/home-page/hero.jpg 1x, /src/images/home-page/hero@2x.jpg 2x"
+            alt="Frau auf einer Bank an einem Felsvorsprung über bewaldeten Hügeln"
+            width="1440"
+            height="920"
+            fetchpriority="high"
+          />
+          <ul class="hero__facts">
+            <li class="fact-card">
+              <p class="fact-card__value">19,4%</p>
+              <p class="fact-card__text">Von Rheinland-Pfalz gehören zu Natura 2000.</p>
+            </li>
+            <li class="fact-card">
+              <p class="fact-card__value">177</p>
+              <p class="fact-card__text">Schutzgebiete, viele davon direkt vor deiner Haustür.</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- What is Natura 2000: a horizontal track on desktop, a list on mobile -->
+      <section class="about" aria-labelledby="about-title">
+        <div class="about__track">
+          <div class="about__intro">
+            <p class="eyebrow about__eyebrow" id="about-title">Was ist Natura 2000?</p>
+            <div class="about__intro-body">
+              <h2 class="about__heading">Ein Netz für Europas seltenste Natur</h2>
+              <p class="about__text">
+                Natura 2000 ist das größte Netz von Schutzgebieten der Welt. Es verbindet besondere
+                Lebensräume in allen Ländern der EU, damit seltene Tiere, Pflanzen und Landschaften
+                auch in Zukunft eine Chance haben. Schutz heißt dabei nicht „Betreten verboten“:
+                Wandern, Landwirtschaft und Forstwirtschaft gehören in vielen Gebieten ganz
+                selbstverständlich dazu.
+              </p>
+            </div>
+          </div>
+          <figure class="about__figure">
+            <img
+              class="about__image"
+              src="/src/images/home-page/what-is-natura-01.jpg"
+              srcset="/src/images/home-page/what-is-natura-01.jpg 1x, /src/images/home-page/what-is-natura-01@2x.jpg 2x"
+              alt="Rote Sandsteinfelsen zwischen herbstlichen Bäumen"
+              width="934"
+              height="640"
+              loading="lazy"
+            />
+          </figure>
+
+          <div class="about__step about__step--low">
+            <p class="about__number">01</p>
+            <h3 class="about__step-title">Mittendrin statt weit weg. Du kannst sie besuchen.</h3>
+          </div>
+          <figure class="about__figure">
+            <img
+              class="about__image"
+              src="/src/images/home-page/what-is-natura-02.jpg"
+              srcset="/src/images/home-page/what-is-natura-02.jpg 1x, /src/images/home-page/what-is-natura-02@2x.jpg 2x"
+              alt="Burg auf einem bewaldeten Berg über dem Nebel"
+              width="934"
+              height="640"
+              loading="lazy"
+            />
+          </figure>
+
+          <div class="about__step about__step--high">
+            <p class="about__number">02</p>
+            <h3 class="about__step-title">Gemeinsam statt getrennt. Die Gebiete sind verbunden.</h3>
+          </div>
+          <figure class="about__figure">
+            <img
+              class="about__image"
+              src="/src/images/home-page/what-is-natura-03-1.jpg"
+              srcset="/src/images/home-page/what-is-natura-03-1.jpg 1x, /src/images/home-page/what-is-natura-03@2x-1.jpg 2x"
+              alt="Kleiner Wasserfall zwischen bemoosten Felsen"
+              width="934"
+              height="640"
+              loading="lazy"
+            />
+          </figure>
+
+          <div class="about__step about__step--low">
+            <p class="about__number">03</p>
+            <h3 class="about__step-title">Mit Regeln, aber mit gutem Grund.</h3>
+          </div>
+          <div class="about__last">
+            <figure class="about__figure">
+              <img
+                class="about__image"
+                src="/src/images/home-page/what-is-natura-03.jpg"
+                srcset="/src/images/home-page/what-is-natura-03.jpg 1x, /src/images/home-page/what-is-natura-03@2x.jpg 2x"
+                alt="Waldweg mit Herbstlaub im Nebel"
+                width="934"
+                height="640"
+                loading="lazy"
+              />
+            </figure>
+            <a class="button button--light about__more" href="#">Mehr erfahren</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- From Europe to your door -->
+      <section class="regions" aria-labelledby="regions-title">
+        <h2 class="regions__title" id="regions-title">Von Europa bis vor deine Tür</h2>
+        <ul class="regions__list">
+          <li class="card regions__card regions__card--europe">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="/src/images/home-page/europe-01.jpg"
+                srcset="/src/images/home-page/europe-01.jpg 1x, /src/images/home-page/europe-01@2x.jpg 2x"
+                alt="Blühende Wiese in einem Tal mit Nadelwald"
+                width="304"
+                height="304"
+                loading="lazy"
+              />
+            </div>
+            <div class="card__body">
+              <div class="card__content">
+                <p class="eyebrow eyebrow--brand">Europa</p>
+                <p class="card__stat">
+                  27.000 Gebiete
+                  <span class="card__stat-sub">18,6 % der Landfläche</span>
+                </p>
+                <p class="card__text">Von Lappland bis Sizilien: Natura 2000 reicht über ganz Europa.</p>
+              </div>
+              <span class="card__track" aria-hidden="true"></span>
+            </div>
+          </li>
+          <li class="card regions__card regions__card--germany">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="/src/images/home-page/europe-02.jpg"
+                srcset="/src/images/home-page/europe-02.jpg 1x, /src/images/home-page/europe-02@2x.jpg 2x"
+                alt="Heidelandschaft bei Sonnenuntergang"
+                width="304"
+                height="304"
+                loading="lazy"
+              />
+            </div>
+            <div class="card__body">
+              <div class="card__content">
+                <p class="eyebrow eyebrow--brand">Deutschland</p>
+                <p class="card__stat">
+                  5.200 Gebiete
+                  <span class="card__stat-sub">15,5 % der Landfläche</span>
+                </p>
+                <p class="card__text">Fast jeder sechste Quadratmeter in Deutschland gehört dazu.</p>
+              </div>
+              <span class="card__track" aria-hidden="true"></span>
+            </div>
+          </li>
+          <li class="card regions__card regions__card--rlp">
+            <div class="card__media">
+              <img
+                class="card__image"
+                src="/src/images/home-page/europe-03.jpg"
+                srcset="/src/images/home-page/europe-03.jpg 1x, /src/images/home-page/europe-03@2x.jpg 2x"
+                alt="Fluss mit grünen Ufern und Rapsfeld"
+                width="304"
+                height="304"
+                loading="lazy"
+              />
+            </div>
+            <div class="card__body">
+              <div class="card__content">
+                <p class="eyebrow eyebrow--brand">Rheinland-Pfalz</p>
+                <p class="card__stat">
+                  177 Gebiete
+                  <span class="card__stat-sub">19,4 % der Landesfläche</span>
+                </p>
+                <p class="card__text">Fast jeder fünfte Schritt hier führt durch Natura 2000.</p>
+              </div>
+              <span class="card__track" aria-hidden="true"></span>
+            </div>
+          </li>
+        </ul>
+        <a class="button button--primary regions__button" href="#">Und in deiner Region?</a>
+      </section>
+
+      <!-- Three ways into the network + habitats slider (dark) -->
+      <section class="discover" aria-labelledby="discover-title">
+        <div class="section-head section-head--dark">
+          <p class="eyebrow section-head__eyebrow">Natura 2000 entdecken</p>
+          <div class="section-head__body">
+            <h2 class="section-head__title" id="discover-title">Drei Wege ins Netz</h2>
+            <p class="section-head__lead">
+              Starte bei einer Art, einem Lebensraum oder einem Ort. Am Ende hängt alles zusammen.
+            </p>
+          </div>
+        </div>
+
+        <ul class="discover__stats">
+          <li class="stat">
+            <p class="stat__value">352</p>
+            <div class="stat__body">
+              <div class="stat__content">
+                <h3 class="stat__title">Arten</h3>
+                <p class="stat__text">Vom Laubfrosch bis zur Wildkatze: Tiere und Pflanzen, die ein Zuhause brauchen.</p>
+              </div>
+              <a class="link-icon" href="#">
+                <img src="/src/assets/icons/species.svg" alt="" width="16" height="16" />
+                Arten entdecken
+              </a>
+            </div>
+          </li>
+          <li class="stat">
+            <p class="stat__value">48</p>
+            <div class="stat__body">
+              <div class="stat__content">
+                <h3 class="stat__title">Lebensraumtypen</h3>
+                <p class="stat__text">Buchenwälder, Magerwiesen, Felsen: die Orte, an denen Arten leben.</p>
+              </div>
+              <a class="link-icon" href="#">
+                <img src="/src/assets/icons/habitats.svg" alt="" width="16" height="16" />
+                Lebensräume entdecken
+              </a>
+            </div>
+          </li>
+          <li class="stat">
+            <p class="stat__value">177</p>
+            <div class="stat__body">
+              <div class="stat__content">
+                <h3 class="stat__title">Schutzgebiete</h3>
+                <p class="stat__text">Die Orte selbst: Vielleicht liegt eines gleich bei dir um die Ecke.</p>
+              </div>
+              <a class="link-icon" href="#">
+                <img src="/src/assets/icons/areas.svg" alt="" width="16" height="16" />
+                Gebiete entdecken
+              </a>
+            </div>
+          </li>
+        </ul>
+
+        <div class="discover__habitats">
+          <h2 class="discover__title">Was gibt es zu entdecken?</h2>
+          <ul class="discover__slider">
+            <li class="habitat">
+              <a class="habitat__link" href="#">
+                <div class="habitat__media">
+                  <img
+                    class="habitat__image"
+                    src="/src/images/home-page/area-01.jpg"
+                    srcset="/src/images/home-page/area-01.jpg 1x, /src/images/home-page/area-01@2x.jpg 2x"
+                    alt=""
+                    width="321"
+                    height="428"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="habitat__title">Wälder</h3>
+              </a>
+              <ul class="tags">
+                <li>Wildkatze</li>
+                <li>Schwarzstorch</li>
+                <li>Hirschkäfer</li>
+              </ul>
+            </li>
+            <li class="habitat">
+              <a class="habitat__link" href="#">
+                <div class="habitat__media">
+                  <img
+                    class="habitat__image"
+                    src="/src/images/home-page/area-02.jpg"
+                    srcset="/src/images/home-page/area-02.jpg 1x, /src/images/home-page/area-02@2x.jpg 2x"
+                    alt=""
+                    width="321"
+                    height="428"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="habitat__title">Flüsse &amp; Auen</h3>
+              </a>
+              <ul class="tags">
+                <li>Biber</li>
+                <li>Eisvogel</li>
+              </ul>
+            </li>
+            <li class="habitat">
+              <a class="habitat__link" href="#">
+                <div class="habitat__media">
+                  <img
+                    class="habitat__image"
+                    src="/src/images/home-page/area-03.jpg"
+                    srcset="/src/images/home-page/area-03.jpg 1x, /src/images/home-page/area-03@2x.jpg 2x"
+                    alt=""
+                    width="321"
+                    height="428"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="habitat__title">Wiesen &amp; Weiden</h3>
+              </a>
+              <ul class="tags">
+                <li>Wiesenknopf-Ameisenbläuling</li>
+                <li>Braunkehlchen</li>
+                <li>Orchideen</li>
+              </ul>
+            </li>
+            <li class="habitat">
+              <a class="habitat__link" href="#">
+                <div class="habitat__media">
+                  <img
+                    class="habitat__image"
+                    src="/src/images/home-page/area-04.jpg"
+                    srcset="/src/images/home-page/area-04.jpg 1x, /src/images/home-page/area-04@2x.jpg 2x"
+                    alt=""
+                    width="321"
+                    height="428"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="habitat__title">Felsen &amp; Trockenhänge</h3>
+              </a>
+              <ul class="tags">
+                <li>Apollofalter</li>
+                <li>Smaragdeidechse</li>
+                <li>Uhu</li>
+              </ul>
+            </li>
+            <li class="habitat">
+              <a class="habitat__link" href="#">
+                <div class="habitat__media">
+                  <img
+                    class="habitat__image"
+                    src="/src/images/home-page/area-05.jpg"
+                    srcset="/src/images/home-page/area-05.jpg 1x, /src/images/home-page/area-05@2x.jpg 2x"
+                    alt=""
+                    width="321"
+                    height="428"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 class="habitat__title">Tümpel, Teiche &amp; Moore</h3>
+              </a>
+              <ul class="tags">
+                <li>Laubfrosch</li>
+                <li>Kammmolch</li>
+                <li>Libellen</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Species of the month (dark) -->
+      <section class="species" aria-labelledby="species-title">
+        <div class="species__frame">
+          <img
+            class="species__image"
+            src="/src/images/home-page/art-of-the-month.jpg"
+            srcset="/src/images/home-page/art-of-the-month.jpg 1x, /src/images/home-page/art-of-the-month@2x.jpg 2x"
+            alt="Wildkatze sitzt im Wald"
+            width="1440"
+            height="810"
+            loading="lazy"
+          />
+          <div class="species__content">
+            <div class="species__aside">
+              <h2 class="species__title" id="species-title">
+                Art des Monats
+                <span class="species__month">Oktober</span>
+              </h2>
+              <a class="button button--light species__all" href="#">Alle Arten des Monats</a>
+            </div>
+
+            <article class="species-card">
+              <div class="species-card__top">
+                <div class="species-card__info">
+                  <div class="species-card__name">
+                    <h3 class="species-card__title">Die Wildkatze</h3>
+                    <p class="species-card__latin">Felis silvestris</p>
+                  </div>
+                  <div class="species-card__about">
+                    <p class="species-card__lead">Scheu, selten und näher, als du denkst</p>
+                    <p class="species-card__text">
+                      Die Wildkatze braucht zusammenhängende Wälder, um zu wandern und Partner zu
+                      finden. Genau dafür ist ein Netz da: Es hält die Lebensräume verbunden.
+                    </p>
+                  </div>
+                </div>
+                <div class="species-card__thumb">
+                  <img
+                    src="/src/images/home-page/art-of-the-month-thumb.jpg"
+                    srcset="/src/images/home-page/art-of-the-month-thumb.jpg 1x, /src/images/home-page/art-of-the-month-thumb@2x.jpg 2x"
+                    alt=""
+                    width="96"
+                    height="128"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="species-card__bottom">
+                <dl class="species-card__facts">
+                  <div class="species-card__fact">
+                    <dt>Lebensraum</dt>
+                    <dd>Laub- und Mischwälder</dd>
+                  </div>
+                  <div class="species-card__fact">
+                    <dt>Aktiv</dt>
+                    <dd>Dämmerung und Nacht</dd>
+                  </div>
+                  <div class="species-card__fact">
+                    <dt>Vorkommen</dt>
+                    <dd>Pfälzerwald, Eifel, Hunsrück</dd>
+                  </div>
+                </dl>
+                <a class="link-icon link-icon--brand" href="#">
+                  <img src="/src/assets/icons/compass.svg" alt="" width="16" height="16" />
+                  Wo lebt sie?
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- News + newsletter -->
+      <section class="news" aria-labelledby="news-title">
+        <div class="section-head">
+          <p class="eyebrow section-head__eyebrow">Aktuelles</p>
+          <div class="section-head__body">
+            <h2 class="section-head__title" id="news-title">Neues aus dem Netz</h2>
+            <p class="section-head__lead">
+              Finde Natura 2000-Gebiete in Rheinland-Pfalz und entdecke, welche Arten dort leben.
+            </p>
+          </div>
+        </div>
+
+        <ul class="news__list">
+          <li class="card news__card news__card--wide">
+            <div class="card__media card__media--wide">
+              <img
+                class="card__image"
+                src="/src/images/home-page/news-01.jpg"
+                srcset="/src/images/home-page/news-01.jpg 1x, /src/images/home-page/news-01@2x.jpg 2x"
+                alt="Kranich mit ausgebreiteten Flügeln auf einem Feld"
+                width="656"
+                height="369"
+                loading="lazy"
+              />
+            </div>
+            <div class="card__body">
+              <div class="card__content">
+                <p class="eyebrow eyebrow--brand">Natura 2000</p>
+                <h3 class="card__title"><a class="card__link" href="#">Kraniche auf dem Zug: Wo sie jetzt rasten</a></h3>
+                <p class="card__text">
+                  Im Herbst ziehen Kraniche über Rheinland-Pfalz. Ein Blick darauf, warum
+                  Rastplätze für sie so wichtig sind.
+                </p>
+              </div>
+              <time class="card__date" datetime="2026-11-24">24 November 2026</time>
+            </div>
+          </li>
+          <li class="card news__card">
+            <div class="card__media card__media--landscape">
+              <img
+                class="card__image"
+                src="/src/images/home-page/news-02.jpg"
+                srcset="/src/images/home-page/news-02.jpg 1x, /src/images/home-page/news-02@2x.jpg 2x"
+                alt=""
+                width="303"
+                height="228"
+                loading="lazy"
+              />
+            </div>
+            <div class="card__body">
+              <div class="card__content">
+                <p class="eyebrow eyebrow--brand">Projekt &amp; Website</p>
+                <h3 class="card__title"><a class="card__link" href="#">Die neue Website ist online</a></h3>
+                <p class="card__text">
+                  Natura 2000 neu entdecken: Arten, Lebensräume und Gebiete jetzt an einem Ort.
+                </p>
+              </div>
+              <time class="card__date" datetime="2026-11-21">21 November 2026</time>
+            </div>
+          </li>
+          <li class="card news__card">
+            <div class="card__media card__media--square">
+              <img
+                class="card__image"
+                src="/src/images/home-page/news-03.jpg"
+                srcset="/src/images/home-page/news-03.jpg 1x, /src/images/home-page/news-03@2x.jpg 2x"
+                alt="Wildkatze auf einer Wiese"
+                width="303"
+                height="303"
+                loading="lazy"
+              />
+            </div>
+            <div class="card__body">
+              <div class="card__content">
+                <p class="eyebrow eyebrow--brand">Termine</p>
+                <h3 class="card__title"><a class="card__link" href="#">Wanderung auf den Spuren der Wildkatze</a></h3>
+                <p class="card__text">
+                  Eine geführte Tour durch den Wald: Spuren lesen und mehr über die scheue Jägerin
+                  erfahren.
+                </p>
+              </div>
+              <time class="card__date" datetime="2026-11-10">10 November 2026</time>
+            </div>
+          </li>
+        </ul>
+
+        <div class="newsletter">
+          <div class="newsletter__head">
+            <h2 class="newsletter__title">Bleib mit dem Netz verbunden</h2>
+            <p class="newsletter__lead">
+              Neues zu Arten, Gebieten und Terminen, direkt in dein Postfach. Kein Spam, jederzeit
+              abbestellbar.
+            </p>
+          </div>
+          <form class="newsletter__form" action="#" method="post">
+            <label class="visually-hidden" for="newsletter-email">E-Mail-Adresse</label>
+            <input
+              class="newsletter__input"
+              id="newsletter-email"
+              type="email"
+              name="email"
+              placeholder="E-Mail-Adresse"
+              autocomplete="email"
+              required
+            />
+            <button class="newsletter__submit" type="submit" aria-label="Anmelden">
+              <img src="/src/assets/icons/arrow-right.svg" alt="" width="20" height="20" />
+            </button>
+          </form>
+        </div>
+      </section>
     </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer__top">
+        <a class="footer__logo" href="/" aria-label="Natura 2000 — Startseite">
+          <img src="/src/assets/logo/logo-white.svg" alt="" width="127" height="88" />
+        </a>
+        <p class="eyebrow footer__label footer__label--discover">Entdecken</p>
+        <div class="footer__labels">
+          <p class="eyebrow footer__label">Natura 2000</p>
+          <p class="eyebrow footer__label">Für Fachleute</p>
+        </div>
+      </div>
+
+      <address class="footer__contacts">
+        <div class="footer__contact">
+          <p class="eyebrow footer__label">Stiftung Natur und Umwelt Rheinland-Pfalz</p>
+          <p class="footer__text">Diether-von-Isenburg-Straße 7,<br />55116 Mainz</p>
+        </div>
+        <div class="footer__contact">
+          <p class="eyebrow footer__label">Telefon</p>
+          <a class="footer__text" href="tel:+4936164417072">+49 0361 644 170 72</a>
+        </div>
+        <div class="footer__contact">
+          <p class="eyebrow footer__label">E-Mail</p>
+          <a class="footer__text" href="mailto:info@natura2000-beispiel.de">info@natura2000-beispiel.de</a>
+        </div>
+      </address>
+
+      <nav class="footer__discover" aria-label="Entdecken">
+        <p class="eyebrow footer__label footer__label--mobile">Entdecken</p>
+        <ul class="footer__big-list">
+          <li><a class="footer__big-link" href="#">Arten</a></li>
+          <li><a class="footer__big-link" href="#">Lebensräume</a></li>
+          <li><a class="footer__big-link" href="#">Schutzgebiete</a></li>
+          <li><a class="footer__big-link" href="#">Karte</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer__more" aria-label="Weitere Seiten">
+        <div class="footer__labels footer__labels--mobile">
+          <p class="eyebrow footer__label">Natura 2000</p>
+          <p class="eyebrow footer__label">Für Fachleute</p>
+        </div>
+        <div class="footer__columns">
+          <ul class="footer__list">
+            <li><a class="footer__text" href="#">Was ist Natura 2000?</a></li>
+            <li><a class="footer__text" href="#">Geschichte</a></li>
+            <li><a class="footer__text" href="#">Aktuelles</a></li>
+          </ul>
+          <ul class="footer__list">
+            <li><a class="footer__text" href="#">Gebietsdaten</a></li>
+            <li><a class="footer__text" href="#">Förderung</a></li>
+            <li><a class="footer__text" href="#">Presse</a></li>
+            <li><a class="footer__text" href="#">Downloads</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="footer__instagram">
+        <div class="footer__instagram-head">
+          <p class="eyebrow footer__label">Folge uns auf Instagram</p>
+          <a class="eyebrow footer__handle" href="#">@natura2000network</a>
+        </div>
+        <ul class="footer__gallery">
+          <li class="footer__photo footer__photo--tall">
+            <img src="/src/images/home-page/instagram-01.jpg" srcset="/src/images/home-page/instagram-01.jpg 1x, /src/images/home-page/instagram-01@2x.jpg 2x" alt="" width="145" height="193" loading="lazy" />
+          </li>
+          <li class="footer__photo">
+            <img src="/src/images/home-page/instagram-02.jpg" srcset="/src/images/home-page/instagram-02.jpg 1x, /src/images/home-page/instagram-02@2x.jpg 2x" alt="" width="145" height="145" loading="lazy" />
+          </li>
+          <li class="footer__photo">
+            <img src="/src/images/home-page/instagram-03.jpg" srcset="/src/images/home-page/instagram-03.jpg 1x, /src/images/home-page/instagram-03@2x.jpg 2x" alt="" width="145" height="145" loading="lazy" />
+          </li>
+          <li class="footer__photo footer__photo--tall">
+            <img src="/src/images/home-page/instagram-04.jpg" srcset="/src/images/home-page/instagram-04.jpg 1x, /src/images/home-page/instagram-04@2x.jpg 2x" alt="" width="145" height="193" loading="lazy" />
+          </li>
+          <li class="footer__photo">
+            <img src="/src/images/home-page/instagram-05.jpg" srcset="/src/images/home-page/instagram-05.jpg 1x, /src/images/home-page/instagram-05@2x.jpg 2x" alt="" width="145" height="145" loading="lazy" />
+          </li>
+          <li class="footer__photo footer__photo--tall">
+            <img src="/src/images/home-page/instagram-06.jpg" srcset="/src/images/home-page/instagram-06.jpg 1x, /src/images/home-page/instagram-06@2x.jpg 2x" alt="" width="145" height="193" loading="lazy" />
+          </li>
+        </ul>
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__muted">© Stiftung Natur und Umwelt Rheinland-Pfalz, 2026.</p>
+        <ul class="footer__legal">
+          <li><a class="footer__text" href="#">Impressum</a></li>
+          <li><a class="footer__text" href="#">Datenschutz</a></li>
+          <li><a class="footer__text" href="#">Barrierefreiheitserklärung</a></li>
+          <li><a class="footer__text" href="#">Leichte Sprache</a></li>
+          <li><a class="footer__text" href="#">Gebärdensprache</a></li>
+        </ul>
+        <p class="footer__muted footer__rights">Alle Rechte vorbehalten</p>
+      </div>
+    </footer>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

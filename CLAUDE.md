@@ -12,7 +12,10 @@
 - src/styles/ — tokens.css (переменные), base.css, секции отдельными файлами
 - src/animations/ — config.js (все тайминги и easing), smooth-scroll.js (Lenis + ScrollTrigger), анимации секций
 - src/components/ — интерактив компонентов (hover и т. п.)
-- src/assets/ — картинки и svg, которые проходят через сборку; public/ — файлы как есть
+- src/assets/ — шрифты, логотипы и иконки (svg из Figma); public/ — файлы как есть
+- src/images/<страница>/ — фото, которые готовит пользователь, каждое в двух размерах: name.jpg и name@2x.jpg (подключать через srcset 1x/2x)
+- src/styles/components.css — общие блоки (eyebrow, button, link-icon, section-head, card, fact-card, tags); секции главной — отдельными файлами
+- Размеры и отступы секций — тоже в tokens.css (блок «Sections»), в стилях секций только переменные
 - vite.config.js — многостраничная сборка: новые страницы добавлять в build.rollupOptions.input
 
 ## Figma

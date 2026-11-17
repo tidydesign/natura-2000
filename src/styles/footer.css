@@ -1,0 +1,290 @@
+/*
+  Footer on the dark background.
+  Mobile: one column. Desktop: three columns; contacts in the first,
+  the big links in the second, two link lists in the third, Instagram under the last two.
+*/
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+  padding: var(--section-padding) var(--page-gutter) var(--space-16);
+  color: var(--color-dark-text);
+  background-color: var(--color-dark-bg);
+}
+
+.footer__label {
+  color: var(--color-dark-muted);
+}
+
+.footer__text {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+}
+
+.footer__muted {
+  color: var(--color-dark-muted);
+}
+
+/* Top row */
+.footer__top > :not(.footer__logo) {
+  display: none;
+}
+
+.footer__logo {
+  position: relative;
+  display: block;
+  width: var(--footer-logo-width);
+  height: var(--footer-logo-height);
+}
+
+.footer__logo img {
+  position: absolute;
+  left: calc(-1 * var(--space-6));
+  width: var(--footer-logo-width);
+  height: auto;
+  max-width: none;
+}
+
+/* Contacts */
+.footer__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  margin-top: calc(var(--space-16) - var(--space-48));
+  padding-block: var(--space-16);
+}
+
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Big links */
+.footer__label--mobile {
+  padding-block: var(--space-16);
+  box-shadow: inset 0 -1px 0 var(--color-dark-line);
+}
+
+.footer__big-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-block: var(--space-16);
+}
+
+.footer__big-link {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--tracking-display);
+}
+
+/* Two link lists */
+.footer__more {
+  margin-top: calc(var(--space-16) - var(--space-48));
+}
+
+.footer__labels {
+  display: flex;
+  gap: var(--space-16);
+  align-items: flex-end;
+}
+
+.footer__labels > * {
+  flex: 1;
+}
+
+.footer__labels--mobile {
+  padding-block: var(--space-16);
+  box-shadow: inset 0 -1px 0 var(--color-dark-line);
+}
+
+.footer__columns {
+  display: flex;
+  gap: var(--space-16);
+}
+
+.footer__list {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding-block: var(--space-24);
+}
+
+/* Instagram */
+.footer__instagram-head {
+  display: flex;
+  gap: var(--grid-gap);
+  align-items: flex-end;
+  padding-block: var(--space-16);
+  box-shadow: inset 0 -1px 0 var(--color-dark-line);
+}
+
+.footer__instagram-head > * {
+  flex: 1;
+}
+
+.footer__handle {
+  color: var(--color-on-media);
+  text-align: right;
+}
+
+.footer__gallery {
+  display: flex;
+  gap: var(--space-8);
+  align-items: flex-start;
+  margin-inline: calc(-1 * var(--page-gutter));
+  padding: var(--space-16) var(--page-gutter);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.footer__gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.footer__photo {
+  flex: none;
+  width: var(--footer-photo-width);
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+
+.footer__photo--tall {
+  aspect-ratio: 3 / 4;
+}
+
+.footer__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Bottom row */
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8) var(--space-16);
+  order: -1;
+  margin-bottom: var(--space-24);
+}
+
+.footer__legal li {
+  flex: 1 0 var(--footer-legal-min-width);
+}
+
+@media (min-width: 480px) {
+  .footer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--grid-gap);
+    row-gap: 0;
+    padding: var(--space-16) var(--page-gutter) var(--space-32);
+  }
+
+  .footer__top {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: end;
+    padding-block: var(--space-16);
+    box-shadow: inset 0 -1px 0 var(--color-dark-line);
+  }
+
+  .footer__top > :not(.footer__logo) {
+    display: flex;
+  }
+
+  .footer__labels {
+    gap: var(--footer-columns-gap);
+  }
+
+  .footer__labels > * {
+    flex: 0 1 var(--footer-column-width);
+  }
+
+  .footer__label--mobile,
+  .footer__labels--mobile {
+    display: none;
+  }
+
+  .footer__contacts {
+    grid-row: 2 / span 2;
+    gap: var(--space-32);
+    margin-top: 0;
+    padding-block: var(--space-24);
+  }
+
+  .footer__discover {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .footer__more {
+    grid-column: 3;
+    grid-row: 2;
+    margin-top: 0;
+  }
+
+  .footer__columns {
+    gap: var(--footer-columns-gap);
+  }
+
+  .footer__list {
+    flex: 0 1 var(--footer-column-width);
+  }
+
+  .footer__instagram {
+    grid-column: 2 / -1;
+    grid-row: 3;
+    margin-top: var(--space-48);
+  }
+
+  .footer__gallery {
+    margin-inline: 0;
+    padding: var(--space-32) 0;
+    overflow: visible;
+  }
+
+  .footer__photo {
+    flex: 1;
+    width: auto;
+  }
+
+  .footer__bottom {
+    display: flex;
+    grid-column: 1 / -1;
+    flex-direction: row;
+    gap: var(--grid-gap);
+    align-items: center;
+    margin-top: var(--space-72);
+  }
+
+  .footer__bottom > p {
+    flex: 1;
+  }
+
+  .footer__legal {
+    gap: var(--space-8) var(--space-48);
+    order: 0;
+    margin-bottom: 0;
+    white-space: nowrap;
+  }
+
+  .footer__legal li {
+    flex: none;
+  }
+
+  .footer__rights {
+    text-align: right;
+  }
+}

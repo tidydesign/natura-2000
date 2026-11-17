@@ -1,0 +1,264 @@
+/*
+  "Art des Monats" on the dark background.
+  Mobile: photo with the title on it, then the card, then the button.
+  Desktop: one big rounded photo; title, button and card sit on it at the bottom.
+*/
+
+.species {
+  padding: var(--section-padding) var(--page-gutter);
+  background-color: var(--color-dark-bg);
+}
+
+/* Mobile: a grid, the photo, its shade and the title share the first cell */
+.species__frame {
+  display: grid;
+  grid-template-areas:
+    "media"
+    "card"
+    "button";
+  row-gap: var(--space-32);
+}
+
+.species__frame::after {
+  content: "";
+  grid-area: media;
+  align-self: end;
+  height: var(--species-shade-height);
+  background: linear-gradient(to top, var(--color-shade), transparent);
+  border-radius: 0 0 var(--radius-l) var(--radius-l);
+  opacity: 0.32;
+  pointer-events: none;
+}
+
+.species__image {
+  grid-area: media;
+  width: 100%;
+  height: var(--species-media-height);
+  object-fit: cover;
+  object-position: 64% 50%;
+  border-radius: var(--radius-l);
+}
+
+.species__content,
+.species__aside {
+  display: contents;
+}
+
+.species__title {
+  position: relative;
+  z-index: 1;
+  grid-area: media;
+  align-self: end;
+  margin-inline: var(--space-16);
+  padding-block: var(--space-16);
+  color: var(--color-on-media);
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  letter-spacing: var(--tracking-display);
+  box-shadow: inset 0 1px 0 var(--color-on-media-line);
+}
+
+.species__month {
+  display: block;
+}
+
+.species__all {
+  grid-area: button;
+  width: 100%;
+}
+
+/* Card */
+.species-card {
+  grid-area: card;
+  overflow: hidden;
+  background-color: var(--color-surface-glass);
+  border-radius: var(--radius-l);
+  backdrop-filter: blur(var(--blur-glass-strong));
+  -webkit-backdrop-filter: blur(var(--blur-glass-strong));
+}
+
+.species-card__top {
+  display: grid;
+  grid-template-areas:
+    "name thumb"
+    "about about";
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-8);
+  padding: var(--space-8);
+}
+
+.species-card__info {
+  display: contents;
+}
+
+.species-card__name {
+  grid-area: name;
+  padding: var(--space-8);
+}
+
+.species-card__title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  letter-spacing: var(--tracking-display);
+}
+
+.species-card__latin {
+  color: var(--color-muted);
+  font-weight: var(--font-weight-medium);
+}
+
+.species-card__about {
+  grid-area: about;
+  padding: var(--space-8);
+}
+
+.species-card__lead {
+  font-weight: var(--font-weight-semibold);
+}
+
+.species-card__text {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-small);
+}
+
+.species-card__thumb {
+  grid-area: thumb;
+  width: var(--species-thumb-width);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background-color: var(--color-brand);
+  border-radius: var(--radius-m);
+}
+
+.species-card__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.species-card__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  align-items: flex-start;
+  padding: var(--space-16);
+  box-shadow: inset 0 1px 0 var(--color-surface-line);
+}
+
+.species-card__facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  width: 100%;
+}
+
+.species-card__fact {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.species-card__fact dt {
+  font-weight: var(--font-weight-semibold);
+}
+
+.species-card__fact dd {
+  font-weight: var(--font-weight-medium);
+}
+
+@media (min-width: 480px) {
+  .species {
+    padding: var(--space-32);
+  }
+
+  .species__frame {
+    position: relative;
+    display: block;
+    height: var(--species-frame-height);
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+  }
+
+  /* A light shade from the bottom-left corner under the title */
+  .species__frame::after {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 50%;
+    height: auto;
+    background: linear-gradient(60deg, var(--color-shade), transparent 80%);
+    border-radius: 0;
+    opacity: 0.12;
+  }
+
+  .species__image {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    object-position: 50% 50%;
+    border-radius: 0;
+  }
+
+  .species__content {
+    position: absolute;
+    right: var(--space-32);
+    bottom: var(--space-32);
+    left: var(--space-32);
+    z-index: 1;
+    display: flex;
+    gap: var(--grid-gap);
+    align-items: center;
+  }
+
+  .species__aside {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+  }
+
+  .species__title {
+    width: 100%;
+    margin-inline: 0;
+    font-size: var(--font-size-display);
+    line-height: var(--line-height-display);
+  }
+
+  .species__all {
+    width: auto;
+  }
+
+  .species-card {
+    flex: none;
+    width: min(var(--species-card-width), 60%);
+  }
+
+  .species-card__top {
+    grid-template-areas:
+      "name thumb"
+      "about thumb";
+  }
+
+  .species-card__thumb {
+    width: auto;
+    height: 100%;
+  }
+
+  .species-card__facts {
+    flex-direction: row;
+  }
+
+  .species-card__fact {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .species-card__fact dd {
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-small);
+  }
+}

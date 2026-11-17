@@ -13,16 +13,24 @@
   --color-line: #d7d7d7;
   --color-surface: #ffffff;
   --color-surface-glass: rgb(255 255 255 / 0.96);
+  --color-surface-line: rgb(0 0 0 / 0.04);
+  --color-track: #e3ebe0;
+  --color-field: #e6ebe6;
   --color-brand: #005b4e;
   --color-on-brand: #ffffff;
   --color-media: #101010;
 
-  /* Dark sections ("Drei Wege ins Netz", footer) */
+  /* Dark sections ("Drei Wege ins Netz", "Art des Monats", footer) */
   --color-dark-bg: #00332b;
   --color-dark-line: #00463c;
   --color-dark-text: #eaf0e9;
   --color-dark-muted: #7ca39d;
   --color-accent: #ffd632;
+
+  /* Text and lines on top of photos */
+  --color-on-media: #ffffff;
+  --color-on-media-line: rgb(255 255 255 / 0.32);
+  --color-shade: #000000;
 
   --color-text: var(--color-ink);
   --color-focus: var(--color-brand);
@@ -39,46 +47,144 @@
   --tracking-display: -0.02em;
   --tracking-text: 0.02em;
 
-  /* Display: hero title, big numbers */
+  /* Display: hero title, big numbers, "Art des Monats" */
   --font-size-display: 48px;
   --line-height-display: 56px;
 
   /* Section title */
-  --font-size-h2: 48px;
-  --line-height-h2: 56px;
+  --font-size-h2: 36px;
+  --line-height-h2: 40px;
+
+  /* Footer navigation */
+  --font-size-h3: 24px;
+  --line-height-h3: 32px;
 
   /* Card and block title */
-  --font-size-h3: 20px;
-  --line-height-h3: 24px;
+  --font-size-h4: 20px;
+  --line-height-h4: 24px;
 
   /* Body */
   --font-size-body: 12px;
   --line-height-body: 20px;
+
+  /* Small text in the "Art des Monats" card */
+  --font-size-small: 10px;
+  --line-height-small: 16px;
 
   /* Small caps: nav, eyebrows, buttons */
   --font-size-label: 10px;
   --line-height-label: 12px;
 
   /* Spacing */
+  --space-2: 2px;
   --space-4: 4px;
+  --space-6: 6px;
   --space-8: 8px;
+  --space-10: 10px;
   --space-12: 12px;
   --space-16: 16px;
   --space-24: 24px;
   --space-32: 32px;
   --space-48: 48px;
   --space-64: 64px;
+  --space-72: 72px;
   --space-96: 96px;
+  --space-128: 128px;
+  --space-150: 150px;
 
-  /* Page side padding */
+  /* Page side padding and column gap */
   --page-gutter: var(--space-16);
+  --grid-gap: var(--space-16);
+
+  /* Section padding (top and bottom) */
+  --section-padding: var(--space-96);
 
   /* Radii */
   --radius-s: 4px;
+  --radius-m: 8px;
   --radius-l: 16px;
+  --radius-xl: 16px;
 
   /* Glass cards on top of photos */
   --blur-glass: 24px;
+  --blur-glass-strong: 32px;
+
+  /* Header */
+  --header-height: 56px;
+  --logo-width: 93px;
+
+  /* Controls */
+  --control-height: 48px;
+  --control-height-s: 32px;
+  --icon-size: 16px;
+  --icon-size-m: 20px;
+  --icon-size-l: 24px;
+  --dot-size: 4px;
+  --track-height: 4px;
+
+  /* --- Sections (home page). Sizes and offsets from the Figma frames --- */
+
+  /* Header nav: the "Karte" button */
+  --nav-accent-width: 96px;
+
+  /* Hero */
+  --hero-intro-width: 906px;
+  --hero-intro-offset: var(--space-72);
+  --hero-caption-gap: var(--space-72);
+  --hero-media-gap: var(--space-16);
+  --hero-media-height: 720px;
+  --hero-facts-top: 160px;
+  --hero-fact-size: 192px;
+
+  /* What is Natura 2000 (desktop: horizontal track) */
+  --about-padding-block: 192px;
+  --about-track-gap: var(--space-150);
+  --about-intro-width: 320px;
+  --about-figure-width: 854px;
+  --about-step-width: 437px;
+  --about-step-low: 320px;
+  --about-step-high: 144px;
+  --about-step-title-height: 88px;
+  --about-button-width: 192px;
+
+  /* From Europe to your door */
+  --regions-title-width: 438px;
+  --regions-padding-top: 332px;
+  --regions-padding-bottom: 192px;
+  --regions-list-offset: 256px;
+  --regions-card-width: 256px;
+  --regions-overlap-1: 80px;
+  --regions-overlap-2: 60px;
+  --regions-button-gap: 192px;
+  --regions-button-width: 192px;
+
+  /* Three ways + habitats */
+  --stat-body-height: 180px;
+  --habitat-width: 256px;
+  --habitat-media-height: 428px;
+  --discover-habitats-gap: 192px;
+
+  /* Species of the month */
+  --species-media-height: 688px;
+  --species-shade-height: 128px;
+  --species-frame-height: 746px;
+  --species-card-width: 640px;
+  --species-thumb-width: 64px;
+
+  /* News and newsletter */
+  --news-padding-bottom: 256px;
+  --news-newsletter-gap: 256px;
+  --newsletter-width: 672px;
+  --newsletter-form-width: 437px;
+  --newsletter-button-width: 80px;
+
+  /* Footer */
+  --footer-logo-width: 127px;
+  --footer-logo-height: 88px;
+  --footer-photo-width: 120px;
+  --footer-legal-min-width: 120px;
+  --footer-column-width: 200px;
+  --footer-columns-gap: 34px;
 
   /* Motion (keep in sync with src/animations/config.js) */
   --ease-default: cubic-bezier(.16, 1, .3, 1);
@@ -93,6 +199,32 @@
     --font-size-display: 64px;
     --line-height-display: 72px;
 
+    --font-size-h2: 48px;
+    --line-height-h2: 56px;
+
+    --font-size-h3: 32px;
+    --line-height-h3: 36px;
+
     --page-gutter: var(--space-32);
+    --grid-gap: var(--space-32);
+
+    --radius-xl: 32px;
+
+    --header-height: 64px;
+    --logo-width: 127px;
+
+    --hero-intro-offset: var(--space-128);
+    --hero-caption-gap: 140px;
+    --hero-media-gap: var(--space-32);
+    --hero-facts-top: 43px;
+    --hero-fact-size: 256px;
+
+    --about-button-width: 256px;
+
+    --regions-card-width: 320px;
+    --regions-button-width: 256px;
+
+    --stat-body-height: 168px;
+    --habitat-width: 321px;
   }
 }
