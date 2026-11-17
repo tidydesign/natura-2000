@@ -4,7 +4,7 @@
 - Vite + vanilla JS, без фреймворков
 - Анимации: GSAP (+ ScrollTrigger), плавный скролл: Lenis
 - Стили: чистый CSS, без Tailwind и препроцессоров
-- Деплой: GitHub (tidydesign/natura-2000) → Vercel, автодеплой при push в main (пока не настроено, проект только локальный)
+- Деплой: GitHub (tidydesign/natura-2000) → Vercel, автодеплой при push в main
 
 ## Структура
 - index.html — разметка
