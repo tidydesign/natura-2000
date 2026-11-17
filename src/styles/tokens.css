@@ -17,7 +17,10 @@
   --color-track: #e3ebe0;
   --color-field: #e6ebe6;
   --color-brand: #005b4e;
+  --color-brand-hover: #006b5c;
+  --color-brand-pressed: #00332b;
   --color-on-brand: #ffffff;
+  --color-header-bg: #ffffff;
   --color-media: #101010;
 
   /* Dark sections ("Drei Wege ins Netz", "Art des Monats", footer) */
@@ -112,6 +115,14 @@
   /* Header */
   --header-height: 56px;
   --logo-width: 93px;
+  /* The logo hangs out of its 32px box, offsets from the design */
+  --logo-offset-x: -5px;
+  --logo-offset-y: -7px;
+  /* How far the logo text moves up into the bar when the header collapses */
+  --logo-text-shift: -37px;
+  --link-underline-offset: 7px;
+  /* From the logo box to the tagline, on top of the 4px flex gap (143px from the logo in the design) */
+  --header-tagline-gap: 19px;
 
   /* Controls */
   --control-height: 48px;
@@ -191,6 +202,13 @@
   --duration-fast: 400ms;
   --duration-base: 500ms;
   --duration-slow: 700ms;
+
+  /* Header: white bar fades in, logo collapses to its text, link underline, button colours */
+  --header-bg-duration: var(--duration-base);
+  --logo-collapse-duration: var(--duration-slow);
+  --logo-graphics-duration: var(--duration-fast);
+  --link-underline-duration: var(--duration-fast);
+  --button-duration: 200ms;
 }
 
 /* Desktop */
@@ -212,6 +230,9 @@
 
     --header-height: 64px;
     --logo-width: 127px;
+    --logo-offset-x: -7px;
+    --logo-offset-y: -9px;
+    --logo-text-shift: -56px;
 
     --hero-intro-offset: var(--space-128);
     --hero-caption-gap: 140px;

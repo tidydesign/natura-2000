@@ -12,5 +12,7 @@ import './styles/news.css'
 import './styles/footer.css'
 
 import { initSmoothScroll } from './animations/smooth-scroll.js'
+import { initHeader } from './components/header.js'
 
 initSmoothScroll()
+initHeader()

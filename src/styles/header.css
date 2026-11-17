@@ -1,8 +1,16 @@
-/* Header: logo and burger on mobile; tagline and nav added on desktop */
+/*
+  Header: logo and burger on mobile; tagline and nav added on desktop.
+  Fixed to the top. Once the page is scrolled (.is-scrolled, set in src/components/header.js)
+  a white bar fades in and the logo collapses: the graphics fade out and the text moves up
+  into the bar (frame "Desktop - Concept 01 - Screen 02").
+*/
 
 .header {
-  position: relative;
-  z-index: 10;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
   display: flex;
   gap: var(--space-4);
   align-items: center;
@@ -10,21 +18,56 @@
   padding-inline: var(--space-12);
 }
 
-/* The logo is taller than the header and hangs over the hero, like in the design */
+/* White bar: fades in on scroll */
+.header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--color-header-bg);
+  opacity: 0;
+  transition: opacity var(--header-bg-duration) var(--ease-default);
+}
+
+.header.is-scrolled::before {
+  opacity: 1;
+}
+
+/* Logo: a 32px box; both layers hang out of it, like in the design */
 .header__logo {
   position: relative;
   flex-shrink: 0;
-  width: calc(var(--logo-width) - var(--space-8));
+  width: calc(var(--logo-width) + var(--logo-offset-x));
   height: var(--control-height-s);
 }
 
 .header__logo img {
   position: absolute;
-  top: calc(-1 * var(--space-8));
-  left: calc(-1 * var(--space-6));
+  top: var(--logo-offset-y);
+  left: var(--logo-offset-x);
   width: var(--logo-width);
   height: auto;
   max-width: none;
+}
+
+.header__logo-graphics {
+  transform-origin: 50% 0;
+  transition:
+    opacity var(--logo-graphics-duration) var(--ease-default),
+    transform var(--logo-collapse-duration) var(--ease-default);
+}
+
+.header__logo-text {
+  transition: transform var(--logo-collapse-duration) var(--ease-default);
+}
+
+.header.is-scrolled .header__logo-graphics {
+  opacity: 0;
+  transform: translateY(var(--logo-text-shift)) scale(0.6);
+}
+
+.header.is-scrolled .header__logo-text {
+  transform: translateY(var(--logo-text-shift));
 }
 
 .header__tagline,
@@ -43,6 +86,7 @@
 }
 
 .header__link {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -55,12 +99,60 @@
   text-transform: uppercase;
   white-space: nowrap;
   border-radius: var(--radius-s);
+  transition: color var(--link-underline-duration) var(--ease-default);
+}
+
+/*
+  Underline: grows from the left on hover and leaves to the right on mouse out.
+  The origin switches sides between the two states, so both moves go left to right.
+*/
+.header__link:not(.header__link--accent)::after {
+  content: "";
+  position: absolute;
+  right: var(--space-24);
+  bottom: var(--link-underline-offset);
+  left: var(--space-24);
+  height: 1px;
+  /* Brand green from the first frame, not the text colour that is still changing */
+  background-color: var(--color-brand);
+  transform: scaleX(0);
+  transform-origin: 100% 50%;
+  transition: transform var(--link-underline-duration) var(--ease-default);
+}
+
+@media (hover: hover) {
+  .header__link:not(.header__link--accent):hover {
+    color: var(--color-brand);
+  }
+
+  .header__link:not(.header__link--accent):hover::after {
+    transform: scaleX(1);
+    transform-origin: 0% 50%;
+  }
+}
+
+/* Brand buttons: "Karte" and the burger */
+.header__link--accent,
+.header__burger {
+  background-color: var(--color-brand);
+  transition: background-color var(--button-duration) var(--ease-default);
+}
+
+@media (hover: hover) {
+  .header__link--accent:hover,
+  .header__burger:hover {
+    background-color: var(--color-brand-hover);
+  }
+}
+
+.header__link--accent:active,
+.header__burger:active {
+  background-color: var(--color-brand-pressed);
 }
 
 .header__link--accent {
   width: var(--nav-accent-width);
   color: var(--color-on-brand);
-  background-color: var(--color-brand);
 }
 
 .header__burger {
@@ -71,7 +163,6 @@
   height: var(--control-height-s);
   margin-left: auto;
   padding: var(--space-4);
-  background-color: var(--color-brand);
   border-radius: var(--radius-s);
 }
 
@@ -85,17 +176,12 @@
     padding-inline: var(--page-gutter);
   }
 
-  .header__logo img {
-    top: calc(-1 * var(--space-10));
-    left: calc(-1 * var(--space-8));
-  }
-
   /* Between the logo and the nav; gives way first when space runs out */
   .header__tagline {
     display: block;
     flex: 1 1 auto;
     min-width: 0;
-    margin-left: var(--space-24);
+    margin-left: var(--header-tagline-gap);
     overflow: hidden;
     color: var(--color-muted);
     font-weight: var(--font-weight-medium);
