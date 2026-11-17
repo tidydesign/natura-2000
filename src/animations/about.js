@@ -10,30 +10,15 @@
 // - Steps 01–03, by the same measure of their place on screen: their gap to the photo on their
 //   left runs from 150% of the design's gap (coming in) to 50% (leaving).
 // Mobile and reduced motion: no pin, the plain layout from about.css.
-// Text inside the track starts when it comes in from the right: text.js asks
-// horizontalScrollFor() for the track tween and uses it as the trigger's containerAnimation.
+// The track tween is registered in horizontal.js, so text inside starts as it comes in from the
+// right.
 
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ABOUT_SCROLL, TEXT_START_X_SHARE } from './config.js'
+import { ABOUT_SCROLL } from './config.js'
+import { registerTrack, unregisterTrack } from './horizontal.js'
 
 gsap.registerPlugin(ScrollTrigger)
-
-let horizontal = null
-// Track text timelines waiting for their turn; shown at once if the horizontal scroll goes away
-// (the screen narrowed to mobile), so nothing stays hidden
-const waiting = new Set()
-
-// The horizontal tween for text that comes in from the right; null for text elsewhere and for
-// text already on screen before the track moves (the intro), which uses the vertical trigger
-export const horizontalScrollFor = (el) => {
-  const track = horizontal && el.closest('.about__track')
-  if (!track) return null
-  const startLeft = el.getBoundingClientRect().left - gsap.getProperty(track, 'x')
-  return startLeft < window.innerWidth * TEXT_START_X_SHARE ? null : horizontal
-}
-export const waitInTrack = (tl) => waiting.add(tl)
-export const doneInTrack = (tl) => waiting.delete(tl)
 
 const clamp01 = gsap.utils.clamp(0, 1)
 
@@ -113,7 +98,7 @@ export function initAbout() {
       },
     )
 
-    horizontal = gsap.to(track, {
+    const horizontal = gsap.to(track, {
       x: () => -distance(),
       ease: 'none',
       onUpdate: render,
@@ -134,16 +119,15 @@ export function initAbout() {
       },
     })
 
+    registerTrack(track, horizontal)
     measure()
     render()
 
     return () => {
       section.classList.remove('about--horizontal')
       gsap.set([intro, ...steps, ...figures.map((f) => f.querySelector('.about__image'))], { clearProps: 'transform' })
-      horizontal = null
+      unregisterTrack(track)
       layout = null
-      waiting.forEach((tl) => tl.progress(1))
-      waiting.clear()
     }
   })
 }

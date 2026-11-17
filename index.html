@@ -153,6 +153,19 @@
 
       <!-- From Europe to your door -->
       <section class="regions" aria-labelledby="regions-title">
+        <!-- Background maps (frame "Maps"): each sits level with its card; a blurred circle stays
+             in the middle of the screen and shows through the map shape (src/animations/regions.js) -->
+        <div class="regions__maps" aria-hidden="true">
+          <div class="regions-map regions-map--europa" data-card="europe">
+            <span class="regions-map__glow"></span>
+          </div>
+          <div class="regions-map regions-map--deutschland" data-card="germany">
+            <span class="regions-map__glow"></span>
+          </div>
+          <div class="regions-map regions-map--rheinland-pfalz" data-card="rlp">
+            <span class="regions-map__glow"></span>
+          </div>
+        </div>
         <h2 class="regions__title" id="regions-title">Von Europa bis vor deine Tür</h2>
         <ul class="regions__list">
           <li class="card regions__card regions__card--europe">
@@ -252,8 +265,12 @@
                 <p class="stat__text">Vom Laubfrosch bis zur Wildkatze: Tiere und Pflanzen, die ein Zuhause brauchen.</p>
               </div>
               <a class="link-icon" href="#">
-                <img src="/src/assets/icons/species.svg" alt="" width="16" height="16" />
-                Arten entdecken
+                <svg class="link-icon__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                  <rect x="2" y="2" width="12" height="1" fill="currentColor" />
+                  <rect x="2" y="5" width="12" height="2" fill="currentColor" />
+                  <rect x="2" y="9" width="12" height="5" fill="currentColor" />
+                </svg>
+                <span class="link-icon__label">Arten entdecken</span>
               </a>
             </div>
           </li>
@@ -265,8 +282,12 @@
                 <p class="stat__text">Buchenwälder, Magerwiesen, Felsen: die Orte, an denen Arten leben.</p>
               </div>
               <a class="link-icon" href="#">
-                <img src="/src/assets/icons/habitats.svg" alt="" width="16" height="16" />
-                Lebensräume entdecken
+                <svg class="link-icon__icon" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
+                  <circle cx="8" cy="8" r="7" fill="currentColor" />
+                  <path class="link-icon__cut" d="M12.2426 3.75736L9.41421 9.41421L3.75736 12.2426L6.58579 6.58579L12.2426 3.75736Z" />
+                  <circle cx="8" cy="8" r="1" fill="currentColor" />
+                </svg>
+                <span class="link-icon__label">Lebensräume entdecken</span>
               </a>
             </div>
           </li>
@@ -278,8 +299,11 @@
                 <p class="stat__text">Die Orte selbst: Vielleicht liegt eines gleich bei dir um die Ecke.</p>
               </div>
               <a class="link-icon" href="#">
-                <img src="/src/assets/icons/areas.svg" alt="" width="16" height="16" />
-                Gebiete entdecken
+                <svg class="link-icon__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M8 1L14.0622 4.5V11.5L8 15L1.93782 11.5V4.5L8 1Z" fill="currentColor" />
+                  <path class="link-icon__cut-line" d="M2 4.5L14 11.5M14 4.5L2 11.5M8 1V15" stroke-linecap="square" />
+                </svg>
+                <span class="link-icon__label">Gebiete entdecken</span>
               </a>
             </div>
           </li>

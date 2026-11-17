@@ -16,7 +16,8 @@ import {
   prefersReducedMotion,
 } from './config.js'
 import { heroImageReady } from './hero.js'
-import { doneInTrack, horizontalScrollFor, waitInTrack } from './about.js'
+import { doneInTrack, horizontalScrollFor, waitInTrack } from './horizontal.js'
+import { revealDelayOf, revealTriggerOf } from './discover.js'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
 
@@ -107,16 +108,19 @@ const onReach = (el) => (tl) => {
   tl.pause()
   triggers.get(el)?.kill()
   const containerAnimation = horizontalScrollFor(el)
-  if (containerAnimation) waitInTrack(tl)
+  if (containerAnimation) waitInTrack(tl, el)
+  // A block can hold its text back (data-reveal-delay, e.g. the stat columns)
+  const delay = revealDelayOf(el)
   const play = () => {
     doneInTrack(tl)
-    tl.play()
+    if (delay) gsap.delayedCall(delay, () => tl.play())
+    else tl.play()
   }
   triggers.set(
     el,
     containerAnimation
       ? ScrollTrigger.create({ trigger: el, containerAnimation, start: TEXT_START_X, once: true, onEnter: play })
-      : ScrollTrigger.create({ trigger: el, start: TEXT_START, end: 'max', once: true, onEnter: play }),
+      : ScrollTrigger.create({ trigger: revealTriggerOf(el), start: TEXT_START, end: 'max', once: true, onEnter: play }),
   )
   return tl
 }

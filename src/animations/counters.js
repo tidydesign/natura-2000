@@ -6,10 +6,8 @@
 // and the digits sit at its right edge: nothing is cut and nothing shifts while counting.
 
 import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { COUNTER, TEXT_START, prefersReducedMotion } from './config.js'
-
-gsap.registerPlugin(ScrollTrigger)
+import { COUNTER, prefersReducedMotion } from './config.js'
+import { playWhenReached, revealDelayOf, revealTriggerOf } from './discover.js'
 
 const COUNTERS = '.fact-card__value, .stat__value'
 
@@ -107,7 +105,8 @@ export function initCounters({ heroIntro, heroAt } = {}) {
       return
     }
     tl.pause()
-    ScrollTrigger.create({ trigger: el, start: TEXT_START, end: 'max', once: true, onEnter: () => tl.play() })
+    // A block can hold its counter back and start it from its own trigger (the stat columns)
+    playWhenReached(tl, revealTriggerOf(el), revealDelayOf(el))
   })
 
   // The hero intro also waits for the fonts, so the widths are set before any count starts

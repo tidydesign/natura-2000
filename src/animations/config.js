@@ -122,3 +122,44 @@ export const ABOUT_SCROLL = {
 
 export const TEXT_START_X_SHARE = 0.85
 export const TEXT_START_X = `left ${TEXT_START_X_SHARE * 100}%`
+
+// "Von Europa bis vor deine Tür" (src/animations/regions.js): the title stays in the middle of the
+// screen (below the header) while the cards scroll past, until the button at the end of the
+// section comes up to `gapToButton` px below it
+export const REGIONS_TITLE = {
+  gapToButton: 48,
+}
+
+// Background maps behind the cards: parallax travel, as a share of the map's own height
+// (half above the card, half below)
+export const REGIONS_MAPS = {
+  parallax: 0.5,
+}
+
+// "Drei Wege ins Netz" (src/animations/discover.js), when reached:
+// the head rises `headFromY` px, each stat column `statFromY` px, the 1px lines grow from the
+// left. Everything in a stat column (rise, line, counter, texts) starts `blockStep` s after the
+// column before it
+export const DISCOVER = {
+  headFromY: 48,
+  statFromY: 96,
+  blockStep: 0.1,
+  rise: { duration: 1, ease: EASE_OUT },
+  line: { duration: 1.2, ease: EASE_OUT },
+}
+
+// "Was gibt es zu entdecken?" on desktop (src/animations/discover.js): pinned in the middle of
+// the screen below the header; the page scroll moves the cards left 1:1 over the title until the
+// last card meets the right page margin
+export const HABITATS_SCROLL = {
+  // Tied straight to the scroll (Lenis already smooths it)
+  scrub: true,
+}
+
+// "Art des Monats" on desktop (src/animations/species.js): once the section sits centred in the
+// screen below the header, its frame opens to the whole screen by itself; scrolling back up
+// closes it again
+export const SPECIES_EXPAND = {
+  duration: 0.9,
+  ease: EASE_OUT,
+}

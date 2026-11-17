@@ -1,18 +1,27 @@
 /*
-  "Von Europa bis vor deine Tür": three cards.
-  Mobile: a centred column. Desktop: the cards are scattered and overlap in height,
-  positions taken from the 1440px frame and kept as a share of the page width.
+  "Von Europa bis vor deine Tür": three cards, half a screen apart.
+  Mobile: a centred column. Desktop: the cards are scattered, positions taken from the 1440px
+  frame and kept as a share of the page width.
+  Behind them: one map per card (frame "Maps"), level with its card, with a blurred circle that
+  stays in the middle of the screen and shows through the map shape (src/animations/regions.js).
+  Layers: maps, then the title (it holds while the cards scroll past), then cards and button.
 */
 
 .regions {
+  position: relative;
+  z-index: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-96);
   align-items: center;
-  padding: var(--section-padding) var(--page-gutter);
+  padding: var(--section-padding) var(--page-gutter) var(--regions-padding-bottom);
+  /* The maps move with parallax; keep them inside the section */
+  overflow: clip;
 }
 
 .regions__title {
+  position: relative;
+  z-index: 1;
   max-width: var(--regions-title-width);
   font-family: var(--font-family-display);
   font-size: var(--font-size-h2);
@@ -21,10 +30,17 @@
   text-align: center;
 }
 
+/* Cards and the button pass over the title while it holds */
+.regions__list,
+.regions__button {
+  position: relative;
+  z-index: 2;
+}
+
 .regions__list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-96);
+  gap: var(--regions-card-gap);
   align-items: center;
   width: 100%;
 }
@@ -33,8 +49,73 @@
   width: var(--regions-card-width);
 }
 
+/* The flex gap gives half the distance to the last card, the margin the other half */
 .regions__button {
   width: var(--regions-button-width);
+  margin-top: calc(var(--regions-button-gap) - var(--space-96));
+}
+
+/* Background maps */
+.regions__maps {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* The map shape is the mask; its fill is the background, the glow shows through it.
+   `top` is set in regions.js (level with the card) */
+.regions-map {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: min(var(--map-width), var(--regions-map-mobile-width));
+  aspect-ratio: var(--map-ratio);
+  margin-inline: auto;
+  overflow: hidden;
+  background-color: var(--color-map);
+  mask-image: var(--map-shape);
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  -webkit-mask-image: var(--map-shape);
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  will-change: transform;
+}
+
+.regions-map--europa {
+  --map-shape: url("../assets/maps/map-europa.svg");
+  --map-width: var(--regions-map-europa-width);
+  --map-ratio: var(--regions-map-europa-ratio);
+  --map-left: var(--regions-map-europa-left);
+}
+
+.regions-map--deutschland {
+  --map-shape: url("../assets/maps/map-deutschland.svg");
+  --map-width: var(--regions-map-deutschland-width);
+  --map-ratio: var(--regions-map-deutschland-ratio);
+  --map-left: var(--regions-map-deutschland-left);
+}
+
+.regions-map--rheinland-pfalz {
+  --map-shape: url("../assets/maps/map-rheinland-pfalz.svg");
+  --map-width: var(--regions-map-rheinland-pfalz-width);
+  --map-ratio: var(--regions-map-rheinland-pfalz-ratio);
+  --map-left: var(--regions-map-rheinland-pfalz-left);
+}
+
+/* Blurred circle; moved every frame so its centre stays in the middle of the screen */
+.regions-map__glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--regions-glow-size);
+  height: var(--regions-glow-size);
+  background-color: var(--color-map-glow);
+  border-radius: 50%;
+  filter: blur(var(--regions-glow-blur));
+  will-change: transform;
 }
 
 @media (min-width: 480px) {
@@ -45,7 +126,7 @@
 
   .regions__list {
     align-items: flex-start;
-    gap: 0;
+    gap: var(--regions-card-gap);
     margin-top: var(--regions-list-offset);
   }
 
@@ -55,17 +136,23 @@
   }
 
   .regions__card--germany {
-    margin-top: calc(-1 * var(--regions-overlap-1));
     /* never past the right edge on narrow desktops */
     margin-left: min(67.43%, calc(100% - var(--regions-card-width) - var(--page-gutter)));
   }
 
   .regions__card--rlp {
-    margin-top: calc(-1 * var(--regions-overlap-2));
     margin-left: 18.54%;
   }
 
   .regions__button {
     margin-top: var(--regions-button-gap);
+  }
+
+  /* Maps at their places from the 1440px frame */
+  .regions-map {
+    right: auto;
+    left: var(--map-left);
+    width: var(--map-width);
+    margin-inline: 0;
   }
 }

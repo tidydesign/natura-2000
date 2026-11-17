@@ -169,16 +169,28 @@
 }
 
 @media (min-width: 480px) {
+  /*
+    One screen tall below the header; the frame sits --species-inset in from every side, so it is
+    the screen minus the header minus twice the inset. On scroll (src/animations/species.js) the
+    inset and the corner radius run down to 0: the frame opens to the whole screen. Everything
+    inside keeps its distances to the frame's edges; the card keeps its width, the title block
+    stretches
+  */
   .species {
-    padding: var(--space-32);
+    --species-inset: var(--space-32);
+    --species-radius: var(--radius-xl);
+
+    position: relative;
+    height: calc(100svh - var(--header-height));
+    padding: 0;
   }
 
   .species__frame {
-    position: relative;
+    position: absolute;
+    inset: var(--species-inset);
     display: block;
-    height: var(--species-frame-height);
     overflow: hidden;
-    border-radius: var(--radius-xl);
+    border-radius: var(--species-radius);
   }
 
   /* A light shade from the bottom-left corner under the title */
@@ -231,9 +243,11 @@
     width: auto;
   }
 
+  /* Fixed at its starting width (60% of the frame's content at most), it does not grow with
+     the frame */
   .species-card {
     flex: none;
-    width: min(var(--species-card-width), 60%);
+    width: min(var(--species-card-width), calc((100vw - 4 * var(--space-32)) * 0.6));
   }
 
   .species-card__top {

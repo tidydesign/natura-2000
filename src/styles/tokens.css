@@ -29,6 +29,11 @@
   --color-dark-text: #eaf0e9;
   --color-dark-muted: #7ca39d;
   --color-accent: #ffd632;
+  --color-accent-hover: #ffde5c;
+
+  /* Background maps in "Von Europa bis vor deine Tür" */
+  --color-map: #e1ebdd;
+  --color-map-glow: #29a200;
 
   /* Text and lines on top of photos */
   --color-on-media: #ffffff;
@@ -121,6 +126,8 @@
   /* How far the logo text moves up into the bar when the header collapses */
   --logo-text-shift: -37px;
   --link-underline-offset: 7px;
+  /* Underline under a link label: this far below the text */
+  --label-underline-gap: 3px;
   /* From the logo box to the tagline, on top of the 4px flex gap (143px from the logo in the design) */
   --header-tagline-gap: 19px;
 
@@ -169,13 +176,31 @@
   /* From Europe to your door */
   --regions-title-width: 438px;
   --regions-padding-top: 332px;
-  --regions-padding-bottom: 192px;
+  /* Button to the next section: twice the section padding */
+  --regions-padding-bottom: calc(2 * var(--section-padding));
   --regions-list-offset: 256px;
   --regions-card-width: 256px;
-  --regions-overlap-1: 80px;
-  --regions-overlap-2: 60px;
-  --regions-button-gap: 192px;
+  /* Between the cards: half a screen */
+  --regions-card-gap: 50svh;
+  /* Last card to the button: twice the gap between the section's blocks */
+  --regions-button-gap: calc(2 * var(--space-96));
   --regions-button-width: 192px;
+
+  /* Background maps (frame "Maps"): sizes and left edges from the 1440px frame */
+  --regions-map-europa-width: 555px;
+  --regions-map-europa-ratio: calc(555 / 525);
+  --regions-map-europa-left: calc(853 / 1440 * 100%);
+  --regions-map-deutschland-width: 438px;
+  --regions-map-deutschland-ratio: calc(438 / 568.831);
+  --regions-map-deutschland-left: calc(99 / 1440 * 100%);
+  --regions-map-rheinland-pfalz-width: 555px;
+  --regions-map-rheinland-pfalz-ratio: calc(555 / 550.647);
+  --regions-map-rheinland-pfalz-left: calc(853 / 1440 * 100%);
+  /* On mobile every map is centred, as wide as this share of the screen at most */
+  --regions-map-mobile-width: 90vw;
+  /* Glow under the maps: a 360px circle blurred by 128px */
+  --regions-glow-size: 360px;
+  --regions-glow-blur: 128px;
 
   /* Three ways + habitats */
   --stat-body-height: 180px;
@@ -186,7 +211,6 @@
   /* Species of the month */
   --species-media-height: 688px;
   --species-shade-height: 128px;
-  --species-frame-height: 746px;
   --species-card-width: 640px;
   --species-thumb-width: 64px;
 
@@ -251,6 +275,8 @@
     --about-button-width: 256px;
 
     --regions-card-width: 320px;
+    --regions-padding-bottom: 384px;
+    --regions-button-gap: 384px;
     --regions-button-width: 256px;
 
     --stat-body-height: 168px;

@@ -71,7 +71,18 @@
   width: var(--newsletter-button-width);
   height: var(--control-height);
   background-color: var(--color-brand);
+  transition: background-color var(--button-duration) var(--ease-default);
   border-radius: var(--radius-s);
+}
+
+@media (hover: hover) {
+  .newsletter__submit:hover {
+    background-color: var(--color-brand-hover);
+  }
+}
+
+.newsletter__submit:active {
+  background-color: var(--color-brand-pressed);
 }
 
 .newsletter__submit img {
