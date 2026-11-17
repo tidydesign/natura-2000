@@ -1,24 +1,84 @@
 /*
-  Design tokens. Placeholders: replace with values from Figma Variables.
+  Design tokens. The Figma file has no Variables, so values are taken from the layers
+  (file "Natura 2000", page "UI - Design", frames "Desktop - Home Page 01" and
+  "Mobile - Home Page 01").
   Mobile-first: Mobile <480, Desktop ≥480.
 */
 
 :root {
   /* Colors */
-  --color-bg: #ffffff;
-  --color-ink: #111111;
+  --color-bg: #f1f5f1;
+  --color-ink: #101010;
+  --color-muted: #707070;
+  --color-line: #d7d7d7;
+  --color-surface: #ffffff;
+  --color-surface-glass: rgb(255 255 255 / 0.96);
+  --color-brand: #005b4e;
+  --color-on-brand: #ffffff;
+  --color-media: #101010;
+
+  /* Dark sections ("Drei Wege ins Netz", footer) */
+  --color-dark-bg: #00332b;
+  --color-dark-line: #00463c;
+  --color-dark-text: #eaf0e9;
+  --color-dark-muted: #7ca39d;
+  --color-accent: #ffd632;
+
   --color-text: var(--color-ink);
-  --color-focus: var(--color-ink);
+  --color-focus: var(--color-brand);
 
   /* Typography */
-  --font-family-text: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-family-display: "Geom", system-ui, sans-serif;
+  --font-family-text: "Inter Tight", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  /* Geom is set at -2% tracking, Inter Tight at +2% */
+  --tracking-display: -0.02em;
+  --tracking-text: 0.02em;
+
+  /* Display: hero title, big numbers */
+  --font-size-display: 48px;
+  --line-height-display: 56px;
+
+  /* Section title */
+  --font-size-h2: 48px;
+  --line-height-h2: 56px;
+
+  /* Card and block title */
+  --font-size-h3: 20px;
+  --line-height-h3: 24px;
+
+  /* Body */
+  --font-size-body: 12px;
+  --line-height-body: 20px;
+
+  /* Small caps: nav, eyebrows, buttons */
+  --font-size-label: 10px;
+  --line-height-label: 12px;
 
   /* Spacing */
   --space-4: 4px;
   --space-8: 8px;
+  --space-12: 12px;
   --space-16: 16px;
   --space-24: 24px;
   --space-32: 32px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-96: 96px;
+
+  /* Page side padding */
+  --page-gutter: var(--space-16);
+
+  /* Radii */
+  --radius-s: 4px;
+  --radius-l: 16px;
+
+  /* Glass cards on top of photos */
+  --blur-glass: 24px;
 
   /* Motion (keep in sync with src/animations/config.js) */
   --ease-default: cubic-bezier(.16, 1, .3, 1);
@@ -30,5 +90,9 @@
 /* Desktop */
 @media (min-width: 480px) {
   :root {
+    --font-size-display: 64px;
+    --line-height-display: 72px;
+
+    --page-gutter: var(--space-32);
   }
 }
