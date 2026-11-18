@@ -199,8 +199,9 @@
   /* On mobile every map is centred, as wide as this share of the screen at most */
   --regions-map-mobile-width: 90vw;
   /* Glow under the maps: a 360px circle blurred by 128px */
-  --regions-glow-size: 360px;
-  --regions-glow-blur: 128px;
+  /* A quarter of the screen wide; the blur keeps the design's ratio (128px on a 360px circle) */
+  --regions-glow-size: 25vw;
+  --regions-glow-blur: calc(var(--regions-glow-size) * 128 / 360);
 
   /* Three ways + habitats */
   --stat-body-height: 180px;
@@ -211,6 +212,9 @@
   /* Species of the month */
   --species-media-height: 688px;
   --species-shade-height: 128px;
+  /* Gradient over the photo: from the left edge across half of it, 12% black fading to 0 */
+  --species-overlay-width: 50%;
+  --species-overlay-opacity: 0.12;
   --species-card-width: 640px;
   --species-thumb-width: 64px;
 
@@ -241,6 +245,17 @@
   --logo-graphics-duration: var(--duration-fast);
   --link-underline-duration: var(--duration-fast);
   --button-duration: 200ms;
+  /* Button hover: circle fill and label roll */
+  /* 1.5 × the fast duration */
+  --button-hover-duration: calc(var(--duration-fast) * 1.5);
+  /* Fill circle: wide enough to cover the button's corners from its centre */
+  --fill-size: 150%;
+  /* Habitat card hover: the photo grows by 10% under its mask */
+  --habitat-zoom: 1.1;
+  --habitat-zoom-duration: var(--duration-slow);
+  /* News card hover: the same 10% zoom under the photo's mask */
+  --news-zoom: var(--habitat-zoom);
+  --news-zoom-duration: var(--habitat-zoom-duration);
 }
 
 /* Desktop */

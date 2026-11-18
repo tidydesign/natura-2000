@@ -39,7 +39,8 @@ const LINE_TEXT = [
   '.card__date',
   '.stat__title',
   '.stat__text',
-  '.habitat__title',
+  // Only the visible copy of the title (the other one rolls in on hover, button-hover.js)
+  '.habitat__title .roll__item:not(.roll__item--next) > .roll__label',
   '.species-card__title',
   '.species-card__latin',
   '.species-card__lead',

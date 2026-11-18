@@ -30,32 +30,93 @@
   white-space: nowrap;
 }
 
-/* Brand green: lighter on hover, darkest while pressed (same as the header buttons) */
+/* Brand green: the hover fill is lighter, the pressed fill darkest (as in the header) */
 .button--primary {
+  --fill-color: var(--color-brand-hover);
+  --fill-pressed: var(--color-brand-pressed);
+
   color: var(--color-on-brand);
   background-color: var(--color-brand);
-  transition: background-color var(--button-duration) var(--ease-default);
-}
-
-@media (hover: hover) {
-  .button--primary:hover {
-    background-color: var(--color-brand-hover);
-  }
-}
-
-.button--primary:active {
-  background-color: var(--color-brand-pressed);
 }
 
 .button--light {
+  --fill-color: var(--color-accent);
+  --fill-pressed: var(--color-accent);
+
   color: var(--color-brand);
   background-color: var(--color-surface);
-  transition: background-color var(--button-duration) var(--ease-default);
+}
+
+/*
+  Hover fill (src/components/button-hover.js adds .hover-fill): a circle grows from the centre
+  and fills the button with --fill-color; pressed, it is --fill-pressed
+*/
+.hover-fill {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hover-fill::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: var(--fill-size);
+  aspect-ratio: 1;
+  background-color: var(--fill-color);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform var(--button-hover-duration) var(--ease-default);
 }
 
 @media (hover: hover) {
-  .button--light:hover {
-    background-color: var(--color-accent);
+  .hover-fill:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.hover-fill:active::before {
+  background-color: var(--fill-pressed);
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/*
+  Roll (button-hover.js wraps the content): on hover the label or icon moves up one line and
+  fades out, its copy comes up from one line below
+*/
+.roll {
+  display: inline-grid;
+  overflow: hidden;
+  vertical-align: top;
+}
+
+.roll__item {
+  grid-area: 1 / 1;
+  transition:
+    transform var(--button-hover-duration) var(--ease-default),
+    opacity var(--button-hover-duration) var(--ease-default);
+}
+
+.roll__item--next {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.roll__label {
+  display: block;
+}
+
+@media (hover: hover) {
+  .roll-host:hover .roll__item {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+
+  .roll-host:hover .roll__item--next {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -90,15 +151,26 @@
   stroke: var(--color-dark-bg);
 }
 
-.link-icon--brand {
+/* Inline icons on light cards: the cut-outs are white */
+.link-icon__cut--light {
+  fill: var(--color-on-brand);
+}
+
+/* Doubled class: wins over the shared .link-icon hover colour below */
+.link-icon.link-icon--brand {
+  --link-hover-color: var(--color-brand-hover);
+
   color: var(--color-brand);
 }
 
 /*
   Hover, like the header nav: the label's underline grows from the left and leaves to the
-  right; icon, text and underline turn lighter yellow together
+  right; icon, text and underline turn the hover colour together (lighter yellow on dark,
+  lighter green on light)
 */
-.link-icon:not(.link-icon--brand) {
+.link-icon {
+  --link-hover-color: var(--color-accent-hover);
+
   transition: color var(--link-underline-duration) var(--ease-default);
 }
 
@@ -113,15 +185,20 @@
   bottom: calc(-1 * var(--label-underline-gap));
   left: 0;
   height: 1px;
-  background-color: var(--color-accent-hover);
+  background-color: var(--link-hover-color);
   transform: scaleX(0);
   transform-origin: 100% 50%;
   transition: transform var(--link-underline-duration) var(--ease-default);
 }
 
+/* Green links on light cards: the underline is the hover green, set directly */
+.link-icon.link-icon--brand .link-icon__label::after {
+  background-color: var(--color-brand-hover);
+}
+
 @media (hover: hover) {
-  .link-icon:not(.link-icon--brand):hover {
-    color: var(--color-accent-hover);
+  .link-icon:hover {
+    color: var(--link-hover-color);
   }
 
   .link-icon:hover .link-icon__label::after {

@@ -4,6 +4,9 @@
 // and signs stay put.
 // Geom has no tabular figures, so every column gets one fixed width, that of the widest digit,
 // and the digits sit at its right edge: nothing is cut and nothing shifts while counting.
+// Narrow final digits (a "1") would leave gaps, so towards the end of the count every column and
+// sign slides (--settle, in em) to where it would sit with natural widths; a centred number
+// stays centred, a left-aligned one keeps its left edge.
 
 import { gsap } from 'gsap'
 import { COUNTER, prefersReducedMotion } from './config.js'
@@ -19,21 +22,46 @@ const stripDigits = (digit, loops) => {
   return digits
 }
 
-// Width of the widest digit in the counter's own font, as a CSS variable on the counter.
-// Measured once the web font is in. Same ratio at every size, so one measure is enough
-const setDigitWidth = (el) => {
+// Measured once the web font is in, in em, so it follows the font size across breakpoints:
+// - the widest digit, as the column width (--counter-digit-width on the counter)
+// - each column's and sign's final slide to natural spacing (data-settle, used at the end)
+const measureCounter = (el) => {
+  const fontSize = parseFloat(getComputedStyle(el).fontSize)
   const probe = document.createElement('span')
   probe.className = 'counter__probe'
   el.append(probe)
-  let max = 0
+  const widths = []
   for (let d = 0; d <= 9; d += 1) {
     probe.textContent = String(d)
-    max = Math.max(max, probe.getBoundingClientRect().width)
+    widths.push(probe.getBoundingClientRect().width / fontSize)
   }
   probe.remove()
-  // In em, so it follows the font size across breakpoints
-  const fontSize = parseFloat(getComputedStyle(el).fontSize)
-  el.style.setProperty('--counter-digit-width', `${max / fontSize}em`)
+  const column = Math.max(...widths)
+  el.style.setProperty('--counter-digit-width', `${column}em`)
+
+  const items = [...el.querySelectorAll('.counter > *')]
+  const parts = items.map((item) => {
+    const digit = item.dataset.digit
+    return digit === undefined
+      ? { item, now: item.getBoundingClientRect().width / fontSize, natural: null, isDigit: false }
+      : { item, now: column, natural: widths[Number(digit)], isDigit: true }
+  })
+  parts.forEach((part) => {
+    if (!part.isDigit) part.natural = part.now
+  })
+  // A centred number stays centred: the whole row moves by half of what it loses in width
+  const lost = parts.reduce((sum, p) => sum + p.now - p.natural, 0)
+  const centred = getComputedStyle(el).textAlign === 'center'
+  let now = 0
+  let natural = 0
+  parts.forEach((part) => {
+    // A digit's glyph sits at its column's right edge
+    const glyphNow = now + (part.isDigit ? part.now - part.natural : 0)
+    const settle = natural - glyphNow + (centred ? lost / 2 : 0)
+    part.item.dataset.settle = `${settle.toFixed(4)}em`
+    now += part.now
+    natural += part.natural
+  })
 }
 
 const buildCounter = (el) => {
@@ -63,6 +91,7 @@ const buildCounter = (el) => {
 
     const column = document.createElement('span')
     column.className = 'counter__digit'
+    column.dataset.digit = ch
     const strip = document.createElement('span')
     strip.className = 'counter__strip'
     stripDigits(Number(ch), loops).forEach((d) => {
@@ -75,11 +104,12 @@ const buildCounter = (el) => {
     strips.push(strip)
   }
   el.append(inner)
-  return strips
+  return { strips, parts: [...inner.children] }
 }
 
-// The strip moves up until its last digit (the value) sits in the window
-const counterTimeline = (strips) => {
+// The strip moves up until its last digit (the value) sits in the window; near the end every
+// column and sign slides to natural spacing
+const counterTimeline = ({ strips, parts }) => {
   const tl = gsap.timeline()
   strips.forEach((strip, i) => {
     const steps = strip.children.length - 1
@@ -90,6 +120,16 @@ const counterTimeline = (strips) => {
       i * COUNTER.stagger,
     )
   })
+  tl.fromTo(
+    parts,
+    { '--settle': '0em' },
+    {
+      '--settle': (i, part) => part.dataset.settle || '0em',
+      duration: COUNTER.settle.duration,
+      ease: COUNTER.settle.ease,
+    },
+    tl.duration() * COUNTER.settle.at,
+  )
   return tl
 }
 
@@ -110,5 +150,5 @@ export function initCounters({ heroIntro, heroAt } = {}) {
   })
 
   // The hero intro also waits for the fonts, so the widths are set before any count starts
-  document.fonts.ready.then(() => counters.forEach(setDigitWidth))
+  document.fonts.ready.then(() => counters.forEach(measureCounter))
 }

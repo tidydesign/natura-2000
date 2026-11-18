@@ -13,6 +13,17 @@
   margin-top: var(--space-64);
 }
 
+/* Hover anywhere on a news card (its title link covers the card): the photo grows under its mask */
+.news__card .card__image {
+  transition: transform var(--news-zoom-duration) var(--ease-default);
+}
+
+@media (hover: hover) {
+  .news__card:hover .card__image {
+    transform: scale(var(--news-zoom));
+  }
+}
+
 /* Newsletter */
 .newsletter {
   display: flex;
@@ -71,18 +82,11 @@
   width: var(--newsletter-button-width);
   height: var(--control-height);
   background-color: var(--color-brand);
-  transition: background-color var(--button-duration) var(--ease-default);
   border-radius: var(--radius-s);
-}
 
-@media (hover: hover) {
-  .newsletter__submit:hover {
-    background-color: var(--color-brand-hover);
-  }
-}
-
-.newsletter__submit:active {
-  background-color: var(--color-brand-pressed);
+  /* Hover fill and roll from components.css */
+  --fill-color: var(--color-brand-hover);
+  --fill-pressed: var(--color-brand-pressed);
 }
 
 .newsletter__submit img {

@@ -111,6 +111,8 @@ export const COUNTER = {
   maxLoops: 1,
   // Between columns, left to right (s)
   stagger: 0.06,
+  // Slide to natural spacing (a narrow "1" leaves no gap), starting this far into the count
+  settle: { at: 0.75, duration: 1.2, ease: EASE_OUT },
 }
 
 // "Was ist Natura 2000?" on desktop (src/animations/about.js): pinned, the page scroll moves the
@@ -145,7 +147,7 @@ export const DISCOVER = {
   statFromY: 96,
   blockStep: 0.1,
   rise: { duration: 1, ease: EASE_OUT },
-  line: { duration: 1.2, ease: EASE_OUT },
+  line: { duration: 1.8, ease: EASE_OUT },
 }
 
 // "Was gibt es zu entdecken?" on desktop (src/animations/discover.js): pinned in the middle of
@@ -172,5 +174,13 @@ export const NEWS = {
   cardFromShare: 0.1,
   cardStep: 0.1,
   rise: { duration: 1, ease: EASE_OUT },
-  line: { duration: 1.2, ease: EASE_OUT },
+  line: { duration: 1.8, ease: EASE_OUT },
+}
+
+// 1px lines that grow from the left when reached (src/animations/lines.js), in sections without
+// their own block animation ("Was ist Natura 2000?")
+export const LINES = {
+  selector: '.about__eyebrow, .about__number',
+  duration: 1.8,
+  ease: EASE_OUT,
 }

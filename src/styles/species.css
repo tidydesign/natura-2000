@@ -19,6 +19,19 @@
   row-gap: var(--space-32);
 }
 
+/* Gradient over the photo, from the left (mobile; on desktop ::after draws it) */
+.species__frame::before {
+  content: "";
+  z-index: 1;
+  grid-area: media;
+  justify-self: start;
+  width: var(--species-overlay-width);
+  background: linear-gradient(to right, var(--color-shade), transparent);
+  border-radius: var(--radius-l) 0 0 var(--radius-l);
+  opacity: var(--species-overlay-opacity);
+  pointer-events: none;
+}
+
 .species__frame::after {
   content: "";
   grid-area: media;
@@ -193,15 +206,20 @@
     border-radius: var(--species-radius);
   }
 
-  /* A light shade from the bottom-left corner under the title */
+  /* Gradient over the photo: half its width from the left, 12% black fading to 0 */
+  .species__frame::before {
+    display: none;
+  }
+
   .species__frame::after {
     position: absolute;
     inset: 0 auto 0 0;
-    width: 50%;
+    z-index: 0;
+    width: var(--species-overlay-width);
     height: auto;
-    background: linear-gradient(60deg, var(--color-shade), transparent 80%);
+    background: linear-gradient(to right, var(--color-shade), transparent);
     border-radius: 0;
-    opacity: 0.12;
+    opacity: var(--species-overlay-opacity);
   }
 
   .species__image {

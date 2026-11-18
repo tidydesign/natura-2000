@@ -11,6 +11,11 @@
   align-items: flex-start;
 }
 
+/* Slide to natural spacing at the end of the count (counters.js) */
+.counter > * {
+  transform: translateX(var(--settle, 0em));
+}
+
 /* Window one line tall, as wide as the widest digit (--counter-digit-width, set in counters.js).
    Until the font is in and the width is measured, a fallback of 0.62em keeps the layout */
 .counter__digit {

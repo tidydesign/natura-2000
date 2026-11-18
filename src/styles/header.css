@@ -131,23 +131,13 @@
   }
 }
 
-/* Brand buttons: "Karte" and the burger */
+/* Brand buttons: "Karte" and the burger; hover fill and roll from components.css */
 .header__link--accent,
 .header__burger {
+  --fill-color: var(--color-brand-hover);
+  --fill-pressed: var(--color-brand-pressed);
+
   background-color: var(--color-brand);
-  transition: background-color var(--button-duration) var(--ease-default);
-}
-
-@media (hover: hover) {
-  .header__link--accent:hover,
-  .header__burger:hover {
-    background-color: var(--color-brand-hover);
-  }
-}
-
-.header__link--accent:active,
-.header__burger:active {
-  background-color: var(--color-brand-pressed);
 }
 
 .header__link--accent {
