@@ -21,6 +21,7 @@ import { initAbout } from './animations/about.js'
 import { initRegions } from './animations/regions.js'
 import { initDiscover } from './animations/discover.js'
 import { initSpecies } from './animations/species.js'
+import { initNews } from './animations/news.js'
 import { HERO_INTRO } from './animations/config.js'
 
 initSmoothScroll()
@@ -29,6 +30,7 @@ initAbout()
 initRegions()
 initDiscover()
 initSpecies()
+initNews()
 const heroIntro = initTextReveals()
 initHeroMedia(heroIntro)
 initCounters({ heroIntro, heroAt: HERO_INTRO.counters })

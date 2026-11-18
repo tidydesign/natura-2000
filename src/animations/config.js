@@ -163,3 +163,14 @@ export const SPECIES_EXPAND = {
   duration: 0.9,
   ease: EASE_OUT,
 }
+
+// "Neues aus dem Netz" (src/animations/news.js), when reached: the head's 1px line grows from
+// the left; the news cards rise from below and fade in, `cardStep` s apart (their text follows),
+// all from the same offset: `cardFromShare` of the big card's height; the newsletter field rises
+// by its own height and fades in
+export const NEWS = {
+  cardFromShare: 0.1,
+  cardStep: 0.1,
+  rise: { duration: 1, ease: EASE_OUT },
+  line: { duration: 1.2, ease: EASE_OUT },
+}
