@@ -1,16 +1,18 @@
 /*
-  "Was ist Natura 2000?"
-  Mobile: a list (intro, photo, 01, photo, 02, photo, 03, photo, button).
-  Desktop: one horizontal track (frame "Desktop - Concept 01 - Screen 02"). For now it
-  scrolls sideways natively; the scroll animation will pin it and drive it by page scroll.
-  The photos are wider than their frames on purpose: room for a parallax shift.
+  "Was ist Natura 2000?" (frame "Desktop - Home Page 01")
+  Rows of text + photo: intro, 01, 02, 03 (with the button).
+  Mobile: one list (intro, photo, 01, photo, 02, photo, 03, photo, button).
+  Desktop: text in the first 4 of 12 columns, the photo in the last 7, one row per screen below
+  the header. On scroll (src/animations/about.js) the photos stack, each covering the one before,
+  and the step texts stack under the header; then everything leaves together.
 */
 
 .about {
   padding: var(--section-padding) var(--page-gutter);
 }
 
-.about__track {
+.about__rows,
+.about__row {
   display: flex;
   flex-direction: column;
   gap: var(--space-48);
@@ -21,19 +23,29 @@
   padding-block: var(--space-16);
 }
 
-/* 1px lines under the eyebrow and the step numbers. --line-progress (0–1) lets them grow from
-   the left (src/animations/lines.js) */
+/* 1px lines: under the eyebrow; under the step number (mobile) or over the step (desktop).
+   --line-progress (0–1) lets them grow from the left (src/animations/lines.js) */
 .about__eyebrow::after,
-.about__number::after {
+.about__number::after,
+.about__step::before {
   content: "";
   position: absolute;
   right: 0;
-  bottom: 0;
   left: 0;
   height: 1px;
   background-color: var(--color-line);
   transform: scaleX(var(--line-progress, 1));
   transform-origin: 0 50%;
+}
+
+.about__eyebrow::after,
+.about__number::after {
+  bottom: 0;
+}
+
+.about__step::before {
+  top: 0;
+  display: none;
 }
 
 .about__intro-body {
@@ -65,7 +77,12 @@
   object-fit: cover;
 }
 
+.about__step {
+  position: relative;
+}
+
 .about__number {
+  position: relative;
   padding-block: var(--space-8);
   color: var(--color-brand);
   font-family: var(--font-family-display);
@@ -73,7 +90,6 @@
   font-weight: var(--font-weight-light);
   line-height: var(--line-height-display);
   letter-spacing: var(--tracking-display);
-  position: relative;
 }
 
 .about__step-title {
@@ -81,119 +97,84 @@
   padding-block: var(--space-16);
 }
 
-.about__last {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-48);
-  align-items: center;
-}
-
-.about__last .about__figure {
-  width: 100%;
-}
-
+/* Last row: the button closes the list, centred, under the photo */
 .about__more {
+  align-self: center;
   width: var(--about-button-width);
 }
 
 @media (min-width: 480px) {
-  /*
-    Photo width: the design's 854px, but never wider than 60% of the screen, and never taller
-    than the pinned panel (screen minus header and padding) allows
-  */
   .about {
-    --about-figure-w: min(
-      var(--about-figure-width),
-      60vw,
-      calc((100svh - var(--header-height) - 2 * var(--about-panel-padding)) / var(--about-figure-ratio))
-    );
-    --about-figure-h: calc(var(--about-figure-w) * var(--about-figure-ratio));
-
-    padding: var(--about-padding-block) 0;
+    padding: var(--about-padding-block) var(--page-gutter);
   }
 
-  .about__track {
+  .about__rows {
+    gap: var(--about-row-gap);
+  }
+
+  /* One row per screen below the header (minus the 32px above and below the photo).
+     --about-col: one column of the 12-column grid */
+  .about__row {
+    --about-col: calc((100% - 11 * var(--grid-gap)) / 12);
+
+    position: relative;
     flex-direction: row;
-    gap: var(--about-track-gap);
+    gap: 0;
+    justify-content: space-between;
     align-items: flex-start;
-    padding-inline: var(--page-gutter);
-    overflow-x: auto;
-    scrollbar-width: none;
+    height: var(--about-photo-height);
   }
 
-  .about__track::-webkit-scrollbar {
+  /* Text: the first 4 columns */
+  .about__intro,
+  .about__step {
+    flex: none;
+    width: calc(4 * var(--about-col) + 3 * var(--grid-gap));
+  }
+
+  /* Photo: the last 7 columns, the full row height */
+  .about__figure {
+    flex: none;
+    width: calc(7 * var(--about-col) + 6 * var(--grid-gap));
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  /* Step: number and title side by side, a line on top */
+  .about__step {
+    display: flex;
+    gap: var(--grid-gap);
+    align-items: flex-start;
+    height: var(--about-step-height);
+  }
+
+  .about__step::before {
+    display: block;
+  }
+
+  .about__number {
+    flex: none;
+    width: var(--about-col);
+  }
+
+  .about__number::after {
     display: none;
   }
 
-  /*
-    Horizontal scroll (src/animations/about.js adds the class): the section becomes a panel one
-    screen tall under the header, pinned while the page scroll moves the track to the left
-  */
-  .about--horizontal {
-    display: flex;
-    align-items: center;
-    height: calc(100svh - var(--header-height));
-    padding: var(--about-panel-shift) 0 0;
-    overflow: hidden;
+  .about__step-title {
+    flex: 1;
+    min-height: 0;
   }
 
-  .about--horizontal .about__track {
-    flex: none;
-    width: max-content;
-    overflow: visible;
-    will-change: transform;
-  }
-
-  /* The photo keeps its own proportions at the frame's height, so it is wider than the frame:
-     the spare width is the room it moves in under the frame's mask (about.js) */
-  .about--horizontal .about__image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: auto;
-    max-width: none;
-    height: 100%;
-    will-change: transform;
-  }
-
-  .about--horizontal .about__intro,
-  .about--horizontal .about__step {
-    will-change: transform;
-  }
-
-  .about__intro {
-    flex: none;
-    width: var(--about-intro-width);
-  }
-
-  .about__figure,
-  .about__last {
-    flex: none;
-    width: var(--about-figure-w);
-  }
-
-  .about__step {
-    flex: none;
-    width: var(--about-step-width);
-  }
-
-  /* Vertical offsets of the steps against the photo, from the design */
-  .about__step--low {
-    margin-top: calc(var(--about-figure-h) * var(--about-step-low));
-  }
-
-  .about__step--high {
-    margin-top: calc(var(--about-figure-h) * var(--about-step-high));
-  }
-
-  .about__last {
-    position: relative;
-  }
-
+  /* Green on desktop, at the bottom of the last row's text column */
   .about__more {
+    --fill-color: var(--color-brand-hover);
+    --fill-pressed: var(--color-brand-pressed);
+
     position: absolute;
-    bottom: var(--space-16);
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 0;
+    left: 0;
+    color: var(--color-on-brand);
+    background-color: var(--color-brand);
   }
 }

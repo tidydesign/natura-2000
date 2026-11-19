@@ -115,12 +115,6 @@ export const COUNTER = {
   settle: { at: 0.75, duration: 1.2, ease: EASE_OUT },
 }
 
-// "Was ist Natura 2000?" on desktop (src/animations/about.js): pinned, the page scroll moves the
-// track left one to one. Text in the track starts when its left edge reaches TEXT_START_X
-export const ABOUT_SCROLL = {
-  // Tied straight to the scroll (Lenis already smooths it)
-  scrub: true,
-}
 
 export const TEXT_START_X_SHARE = 0.85
 export const TEXT_START_X = `left ${TEXT_START_X_SHARE * 100}%`
@@ -178,9 +172,10 @@ export const NEWS = {
 }
 
 // 1px lines that grow from the left when reached (src/animations/lines.js), in sections without
-// their own block animation ("Was ist Natura 2000?")
+// their own block animation ("Was ist Natura 2000?": eyebrow, step numbers on mobile, steps on
+// desktop)
 export const LINES = {
-  selector: '.about__eyebrow, .about__number',
+  selector: '.about__eyebrow, .about__number, .about__step',
   duration: 1.8,
   ease: EASE_OUT,
 }

@@ -1,6 +1,6 @@
-// 1px lines (pseudo-elements scaled by --line-progress) that grow from the left once reached.
-// Inside a horizontal track ("Was ist Natura 2000?" on desktop) a line starts when it comes in
-// from the right, like the text there; elsewhere when it rises into view.
+// 1px lines (pseudo-elements scaled by --line-progress) that grow from the left once reached
+// ("Was ist Natura 2000?"). Inside a horizontal track a line would start when it comes in from
+// the right, like the text there; elsewhere when it rises into view.
 // "Drei Wege ins Netz" and "Neues aus dem Netz" grow their lines with their own blocks.
 
 import { gsap } from 'gsap'

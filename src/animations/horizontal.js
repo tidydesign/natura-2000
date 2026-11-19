@@ -1,4 +1,4 @@
-// Horizontal tracks moved by the page scroll ("Was ist Natura 2000?", "Was gibt es zu entdecken?").
+// Horizontal tracks moved by the page scroll ("Was gibt es zu entdecken?").
 // A track registers its tween here; text.js asks horizontalScrollFor() so that text inside a
 // track starts when it comes in from the right (the tween becomes its containerAnimation).
 

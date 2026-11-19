@@ -155,21 +155,14 @@
   --hero-facts-top: 160px;
   --hero-fact-size: 192px;
 
-  /* What is Natura 2000 (desktop: horizontal track) */
+  /* What is Natura 2000 (desktop: rows of text + photo that stack on scroll) */
   --about-padding-block: 192px;
-  --about-track-gap: var(--space-150);
-  --about-intro-width: 320px;
-  --about-figure-width: 854px;
-  --about-step-width: 437px;
-  /* Steps 01–03 sit lower than the photo's top by a share of its height (320 and 144 of 640) */
-  --about-step-low: 0.5;
-  --about-step-high: 0.225;
-  /* Photo frame height / width */
-  --about-figure-ratio: calc(640 / 854);
-  /* Free space above and below the track in the pinned panel */
-  --about-panel-padding: var(--space-48);
-  /* The design leaves 58px above the track and 48px below: centre, then shift down by half the difference */
-  --about-panel-shift: 10px;
+  --about-row-gap: var(--space-96);
+  /* Photo: one screen below the header, 32px free above and below */
+  --about-photo-height: calc(100svh - var(--header-height) - var(--space-64));
+  /* Where photos and step texts stop: 32px below the header; steps stack 32px apart */
+  --about-stick-gap: var(--space-32);
+  --about-step-height: 88px;
   --about-step-title-height: 88px;
   --about-button-width: 192px;
 

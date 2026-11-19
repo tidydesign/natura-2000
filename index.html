@@ -70,71 +70,78 @@
         </div>
       </section>
 
-      <!-- What is Natura 2000: a horizontal track on desktop, a list on mobile -->
+      <!-- What is Natura 2000: rows of text + photo. Desktop: the photos stack on scroll, each
+           covering the one before; the step texts stack under the header (src/animations/about.js) -->
       <section class="about" aria-labelledby="about-title">
-        <div class="about__track">
-          <div class="about__intro">
-            <p class="eyebrow about__eyebrow" id="about-title">Was ist Natura 2000?</p>
-            <div class="about__intro-body">
-              <h2 class="about__heading">Ein Netz für Europas seltenste Natur</h2>
-              <p class="about__text">
-                Natura 2000 ist das größte Netz von Schutzgebieten der Welt. Es verbindet besondere
-                Lebensräume in allen Ländern der EU, damit seltene Tiere, Pflanzen und Landschaften
-                auch in Zukunft eine Chance haben. Schutz heißt dabei nicht „Betreten verboten“:
-                Wandern, Landwirtschaft und Forstwirtschaft gehören in vielen Gebieten ganz
-                selbstverständlich dazu.
-              </p>
+        <div class="about__rows">
+          <div class="about__row about__row--intro">
+            <div class="about__intro">
+              <p class="eyebrow about__eyebrow" id="about-title">Was ist Natura 2000?</p>
+              <div class="about__intro-body">
+                <h2 class="about__heading">Ein Netz für Europas seltenste Natur</h2>
+                <p class="about__text">
+                  Natura 2000 ist das größte Netz von Schutzgebieten der Welt. Es verbindet besondere
+                  Lebensräume in allen Ländern der EU, damit seltene Tiere, Pflanzen und Landschaften
+                  auch in Zukunft eine Chance haben. Schutz heißt dabei nicht „Betreten verboten“:
+                  Wandern, Landwirtschaft und Forstwirtschaft gehören in vielen Gebieten ganz
+                  selbstverständlich dazu.
+                </p>
+              </div>
             </div>
+            <figure class="about__figure">
+              <img
+                class="about__image"
+                src="/src/images/home-page/what-is-natura-01.jpg"
+                srcset="/src/images/home-page/what-is-natura-01.jpg 1x, /src/images/home-page/what-is-natura-01@2x.jpg 2x"
+                alt="Rote Sandsteinfelsen zwischen herbstlichen Bäumen"
+                width="934"
+                height="640"
+                loading="lazy"
+              />
+            </figure>
           </div>
-          <figure class="about__figure">
-            <img
-              class="about__image"
-              src="/src/images/home-page/what-is-natura-01.jpg"
-              srcset="/src/images/home-page/what-is-natura-01.jpg 1x, /src/images/home-page/what-is-natura-01@2x.jpg 2x"
-              alt="Rote Sandsteinfelsen zwischen herbstlichen Bäumen"
-              width="934"
-              height="640"
-              loading="lazy"
-            />
-          </figure>
 
-          <div class="about__step about__step--low">
-            <p class="about__number">01</p>
-            <h3 class="about__step-title">Mittendrin statt weit weg. Du kannst sie besuchen.</h3>
+          <div class="about__row">
+            <div class="about__step">
+              <p class="about__number">01</p>
+              <h3 class="about__step-title">Mittendrin statt weit weg. Du kannst sie besuchen.</h3>
+            </div>
+            <figure class="about__figure">
+              <img
+                class="about__image"
+                src="/src/images/home-page/what-is-natura-02.jpg"
+                srcset="/src/images/home-page/what-is-natura-02.jpg 1x, /src/images/home-page/what-is-natura-02@2x.jpg 2x"
+                alt="Burg auf einem bewaldeten Berg über dem Nebel"
+                width="934"
+                height="640"
+                loading="lazy"
+              />
+            </figure>
           </div>
-          <figure class="about__figure">
-            <img
-              class="about__image"
-              src="/src/images/home-page/what-is-natura-02.jpg"
-              srcset="/src/images/home-page/what-is-natura-02.jpg 1x, /src/images/home-page/what-is-natura-02@2x.jpg 2x"
-              alt="Burg auf einem bewaldeten Berg über dem Nebel"
-              width="934"
-              height="640"
-              loading="lazy"
-            />
-          </figure>
 
-          <div class="about__step about__step--high">
-            <p class="about__number">02</p>
-            <h3 class="about__step-title">Gemeinsam statt getrennt. Die Gebiete sind verbunden.</h3>
+          <div class="about__row">
+            <div class="about__step">
+              <p class="about__number">02</p>
+              <h3 class="about__step-title">Gemeinsam statt getrennt. Die Gebiete sind verbunden.</h3>
+            </div>
+            <figure class="about__figure">
+              <img
+                class="about__image"
+                src="/src/images/home-page/what-is-natura-03-1.jpg"
+                srcset="/src/images/home-page/what-is-natura-03-1.jpg 1x, /src/images/home-page/what-is-natura-03@2x-1.jpg 2x"
+                alt="Kleiner Wasserfall zwischen bemoosten Felsen"
+                width="934"
+                height="640"
+                loading="lazy"
+              />
+            </figure>
           </div>
-          <figure class="about__figure">
-            <img
-              class="about__image"
-              src="/src/images/home-page/what-is-natura-03-1.jpg"
-              srcset="/src/images/home-page/what-is-natura-03-1.jpg 1x, /src/images/home-page/what-is-natura-03@2x-1.jpg 2x"
-              alt="Kleiner Wasserfall zwischen bemoosten Felsen"
-              width="934"
-              height="640"
-              loading="lazy"
-            />
-          </figure>
 
-          <div class="about__step about__step--low">
-            <p class="about__number">03</p>
-            <h3 class="about__step-title">Mit Regeln, aber mit gutem Grund.</h3>
-          </div>
-          <div class="about__last">
+          <div class="about__row about__row--last">
+            <div class="about__step">
+              <p class="about__number">03</p>
+              <h3 class="about__step-title">Mit Regeln, aber mit gutem Grund.</h3>
+            </div>
             <figure class="about__figure">
               <img
                 class="about__image"
