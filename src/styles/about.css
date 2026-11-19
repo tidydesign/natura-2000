@@ -152,9 +152,11 @@
     display: block;
   }
 
+  /* One of the step's 4 columns (the title takes the other 3). Worked out from the step itself:
+     --about-col is in % of the row and would resolve against the step here */
   .about__number {
     flex: none;
-    width: var(--about-col);
+    width: calc((100% - 3 * var(--grid-gap)) / 4);
   }
 
   .about__number::after {
